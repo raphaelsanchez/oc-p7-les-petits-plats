@@ -1,0 +1,10 @@
+{
+  "globals": {
+    "localStorage": true
+  },
+  "extends": ["standard", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"]
+  }
+}

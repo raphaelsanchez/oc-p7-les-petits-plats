@@ -1,0 +1,28 @@
+{
+  "name": "oc-p7-les-petits-plats",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "Raphael Sanchez",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "postcss css/style.css -o dist/style.css --watch --verbose",
+    "lint": "eslint .",
+    "optimize:medias": "node ./js/utils/medias-optimizer.mjs"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "postcss": "^8.4.30",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0"
+  },
+  "dependencies": {
+    "sharp": "^0.32.6"
+  }
+}
