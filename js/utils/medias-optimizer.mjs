@@ -3,7 +3,7 @@ import path from "path"
 import sharp from "sharp"
 
 // Constants
-const SIZES = [1920, 300, 20]
+const SIZES = [1920, 400, 20]
 const SOURCE_FOLDER = "./assets/"
 
 // Generate a resized image
