@@ -6,10 +6,12 @@
   display: flex;
   gap: 1rem;
   margin: 0;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   list-style: none;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .skip-links:focus-within {
@@ -21,6 +23,7 @@
   background-color: #fff;
   padding: 10px;
   pointer-events: none;
+  border-radius: var(--radius-100);
 }
 
 .skip-links:focus-within .skip-link {

@@ -13,4 +13,9 @@
   --clr-neutral-500: #c4c4c4;
   --clr-neutral-300: #e5e5e5;
   --clr-neutral-100: #ffffff;
+
+  /* Border */
+  --radius-100: 0.25rem;
+  --radius-200: 0.65rem;
+  --radius-300: 1.315rem;
 }

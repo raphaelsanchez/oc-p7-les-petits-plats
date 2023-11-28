@@ -1,7 +1,32 @@
 .site-header {
-  padding: 4rem;
-  min-height: 40rem;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(2rem, 4vw + 0.5rem, 4rem);
+  background-image: url("/assets/images/header-background.1920.webp"), url("/assets/images/header-background.20.webp");
   background-position: center;
   background-size: cover;
+}
+
+.site-header__logo {
+  align-self: flex-start;
+  border-radius: var(--radius-100);
+  padding: 0.5rem;
+}
+
+.site-header__content {
+  display: grid;
+  gap: 2rem;
+
+  max-width: 50rem;
+  padding-block: 10vw;
+}
+
+.site-header__title {
+  font-size: clamp(1.25rem, 4vw + 0.5rem, 2.75rem);
+  line-height: 1.4;
+  color: var(--clr-accent);
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
 }

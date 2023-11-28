@@ -1,0 +1,64 @@
+/* Recipes list */
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: 1.875rem;
+  width: min(100%, 1200px);
+  margin-inline: auto;
+  padding-block: 1rem;
+  padding-inline: clamp(2rem, 4vw + 0.5rem, 4rem);
+}
+
+/* Recipe Card */
+.recipe {
+  border-radius: var(--radius-300);
+  overflow: hidden;
+  background-color: var(--clr-neutral-100);
+}
+
+.recipe__image {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.recipe__content {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+
+.recipe__title {
+  font-size: 1.125rem;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.recipe-furnitures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.attributes__title {
+  grid-column: 1 / -1;
+  color: var(--clr-neutral-700);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.attributes {
+  display: grid;
+  gap: 0.85rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.attribute {
+  display: grid;
+  gap: 0.25rem;
+}
+.attribute__content {
+  color: var(--clr-neutral-700);
+}

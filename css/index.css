@@ -4,5 +4,10 @@
 @import "./bases/elements.css";
 
 @import "./components/header.css";
+@import "./components/footer.css";
+@import "./components/search-form.css";
+@import "./components/recipes.css";
+@import "./components/filters.css";
 
 @import "./utilities/skip-links.css";
+@import "./utilities/a11y.css";

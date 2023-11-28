@@ -23,26 +23,98 @@
     <li><a class="skip-link" href="#search-input">Allez à la recherche</a></li>
   </ul>
 
-  <header class="site-header"
-    style="background-image: url('./assets/medias/Recette01.1920.webp'), url(assets/medias/Recette01.20.webp);">
-    <h1 class="site-header__title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.</h1>
+  <header class="site-header">
+    <a href="/" class="site-header__logo">
+      <img class="site-header__logo-img" src="/assets/images/logo.svg" width="207" height="26"
+        alt="Logo Les Petits Plats">
+    </a>
 
-    <!-- Search form -->
-    <form class="search-form" id="search">
-      <label class="search-form__label" for="search-input">Rechercher une recette</label>
-      <input class="search-form__input" type="search" id="search-input"
-        placeholder="Rechercher une recette, un ingrédient, ...">
-      <button class="search-form__button" type="submit">Rechercher</button>
-    </form>
+    <div class="site-header__content">
+      <h1 class="site-header__title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.</h1>
+
+      <!-- Search form -->
+      <form class="search-form" id="search">
+        <label class="search-form__label" for="search-input">Rechercher une recette</label>
+        <input class="search-form__input" type="search" id="search-input"
+          placeholder="Rechercher une recette, un ingrédient, ...">
+        <button class="search-form__button" type="submit" aria-label="Lancer la recherche">
+          <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <circle cx="10" cy="10.4219" r="9.5" stroke="currentColor" />
+            <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="currentColor" />
+          </svg>
+        </button>
+      </form>
+    </div>
   </header>
 
   <main class="site-content" id="content">
 
     <!-- Recipes filters -->
-    <div class="filters"></div>
+    <aside class="filters">
+      <h2 class="sr-only">Filtrer les recettes</h2>
+      <div class="filter">
+        <button class="filter__trigger">Ingrédients</button>
+        <div class="filter__content">
+          <input type="search">
+          <div class="filter__options">
+            <label class="filter__option" for="ingredient-1">
+              <input type="checkbox" id="ingredient-1">
+              <span>Lait de coco</span>
+            </label>
+            <label class="filter__option" for="ingredient-2">
+              <input type="checkbox" id="ingredient-2">
+              <span>Crème de coco</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="filter">
+        <button class="filter__trigger">Appareils</button>
+        <div class="filter__content">
+          <input type="search">
+        </div>
+      </div>
+      <div class="filter">
+        <button class="filter__trigger">Ustensils</button>
+        <div class="filter__content">
+          <input type="search">
+        </div>
+      </div>
+    </aside>
 
     <!-- Recipes list -->
-    <div class="recipes"></div>
+    <section class="recipes">
+
+      <h2 class="sr-only">Les recettes</h2>
+
+      <article class="recipe">
+        <img class="recipe__image" src="/assets/medias/Recette01.400.webp"
+          style="background-image: url(/assets/medias/Recette01.20.webp);" width="380" height="253" alt=""
+          loading="lazy">
+        <div class="recipe__content">
+          <h3 class="recipe__title">Limonade Coco</h3>
+
+          <div class="attributes recipe-description">
+            <h4 class="attributes__title">Recette</h4>
+            <p>Mettre les glaçons à votre goût dans le blender, Ajouter le lait la crème de coco, le jus de 2 citrons et
+              le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+          </div>
+
+          <div class="attributes recipe-furnitures">
+            <h4 class="attributes__title">Ingredient</h4>
+            <div class="attribute">
+              <span class="attribute__label">Lait de coco</span>
+              <span class="attribute__content">400ml</span>
+            </div>
+            <div class="attribute">
+              <span class="attribute__label">Créme de coco</span>
+              <span class="attribute__content">4 cuillères</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
   </main>
 
   <footer class="site-footer">

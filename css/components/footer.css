@@ -1,0 +1,8 @@
+.site-footer {
+  padding: 4rem;
+}
+
+.site-footer__text {
+  color: var(--clr-neutral-900);
+  text-align: center;
+}

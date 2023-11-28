@@ -3,6 +3,17 @@ body {
 }
 
 /* Headings */
-:where(h1, h2, h3, h4, h5, h6) {
+:where(h1, h2, h3) {
   font-family: "Anton", sans-serif;
+}
+
+/* links */
+a {
+  color: currentColor;
+}
+
+/* Main content */
+main,
+footer {
+  background-color: var(--clr-neutral-300);
 }

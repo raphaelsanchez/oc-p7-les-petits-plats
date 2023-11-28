@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+/* set ouline */
+*:focus-visible {
+  outline: 0.25rem solid var(--clr-accent);
+}
+
 /* Prevent font size inflation */
 html {
   -moz-text-size-adjust: none;
@@ -86,11 +91,16 @@ img,
 picture {
   max-width: 100%;
   height: auto;
-  vertical-align: middle;
   font-style: italic;
   background-repeat: no-repeat;
   background-size: cover;
   shape-margin: 0.75rem;
+}
+
+img,
+picture,
+svg {
+  vertical-align: middle;
 }
 
 /* Inherit fonts for inputs and buttons */
