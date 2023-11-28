@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "postcss css/style.css -o dist/style.css --watch --verbose",
+    "dev": "postcss css/index.css -o public/style.css --watch --verbose",
     "lint": "eslint .",
     "optimize:medias": "node ./js/utils/medias-optimizer.mjs"
   },
