@@ -1,0 +1,7 @@
+.site-header {
+  padding: 4rem;
+  min-height: 40rem;
+
+  background-position: center;
+  background-size: cover;
+}

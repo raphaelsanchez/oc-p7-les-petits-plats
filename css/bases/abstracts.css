@@ -1,0 +1,16 @@
+/** 
+ * ABSTRACTS
+ * Custom properties, keyframes, and other abstracts
+ * ================================================================ */
+:root {
+  /* Accent color */
+  --clr-accent: #ffd15b;
+  --clr-accent-contrast: #1b1b1b;
+
+  /* Neutral color */
+  --clr-neutral-900: #1b1b1b;
+  --clr-neutral-700: #7a7a7a;
+  --clr-neutral-500: #c4c4c4;
+  --clr-neutral-300: #e5e5e5;
+  --clr-neutral-100: #ffffff;
+}

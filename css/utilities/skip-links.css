@@ -1,0 +1,28 @@
+.skip-links {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 1rem;
+  list-style: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.skip-links:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.skip-link {
+  background-color: #fff;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.skip-links:focus-within .skip-link {
+  pointer-events: auto;
+}

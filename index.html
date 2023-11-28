@@ -4,17 +4,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Les Petits Plats</title>
+  <meta name="description" content="Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.">
   <!-- Favico -->
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="manifest" href="/site.webmanifest">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/style.css">
 </head>
 
 <body>
+  <!-- Skip links -->
+  <ul class="skip-links">
+    <li><a class="skip-link" href="#content">Aller au contenu principal</a></li>
+    <li><a class="skip-link" href="#search-input">Allez à la recherche</a></li>
+  </ul>
 
+  <header class="site-header"
+    style="background-image: url('./assets/medias/Recette01.1920.webp'), url(assets/medias/Recette01.20.webp);">
+    <h1 class="site-header__title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.</h1>
+
+    <!-- Search form -->
+    <form class="search-form" id="search">
+      <label class="search-form__label" for="search-input">Rechercher une recette</label>
+      <input class="search-form__input" type="search" id="search-input"
+        placeholder="Rechercher une recette, un ingrédient, ...">
+      <button class="search-form__button" type="submit">Rechercher</button>
+    </form>
+  </header>
+
+  <main class="site-content" id="content">
+
+    <!-- Recipes filters -->
+    <div class="filters"></div>
+
+    <!-- Recipes list -->
+    <div class="recipes"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__text">© 2023 Les Petits Plats, OpenClassrooms project — Tous droits réservés.</p>
+  </footer>
 </body>
 
 </html>
