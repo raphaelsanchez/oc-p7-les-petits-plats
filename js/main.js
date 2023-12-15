@@ -4,15 +4,17 @@ import RecipesView from "./views/recipesView.js"
 import RecipesController from "./controllers/recipesController.js"
 
 // This is the main entrypoint
-function init() {
+function initializeApp() {
   // Get the recipes data
   const recipesModel = new RecipesModel(recipesData)
+
+  // Create the recipes view
   const recipesView = new RecipesView()
 
   // Handle initial recipes list
   const recipesController = new RecipesController(recipesModel, recipesView)
-  recipesController.handleInitialRecipesList()
+  recipesController.renderInitialRecipesList()
 }
 
 // Wait for the page to load before running the script
-window.addEventListener("load", init)
+window.addEventListener("load", initializeApp)

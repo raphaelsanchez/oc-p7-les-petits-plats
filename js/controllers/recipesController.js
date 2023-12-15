@@ -2,35 +2,35 @@ export default class RecipesController {
   constructor(recipesModel, recipesView) {
     this.recipesModel = recipesModel
     this.recipesView = recipesView
-    this.recipesView.bindSearchInputChangeEvent(this.handleSearchInputEvent)
+    this.recipesView.bindSearchInputChangeEvent(this.updateSearchTermAndRefresh)
   }
 
-  // Initialize the controller
-  init() {
+  // Initialize the controller and refresh the ingredients list
+  initializeController() {
     this.recipesModel.init()
     this.refreshIngredientsList()
   }
 
-  // Render the initial list of recipes
-  handleInitialRecipesList() {
+  // Render the initial list of recipes from the model
+  renderInitialRecipesList() {
     const recipes = this.recipesModel.getAllRecipes()
     this.recipesView.renderRecipesList(recipes)
   }
 
-  // Update the search term and refresh the list of recipes
-  handleSearchInputEvent = (searchTerm) => {
+  // Update the search term in the model and refresh the list of recipes
+  updateSearchTermAndRefresh = (searchTerm) => {
     this.recipesModel.setSearchTerm(searchTerm)
-    this.refreshFilteredRecipesList()
+    this.updateAndRenderFilteredRecipes()
   }
 
-  // Update the filter and refresh the list of recipes
-  handleFilterEvent = (filterType, filterValue) => {
+  // Update the filter in the model and refresh the list of recipes
+  updateFilterAndRefresh = (filterType, filterValue) => {
     this.recipesModel.setFilter(filterType, filterValue)
-    this.refreshFilteredRecipesList()
+    this.updateAndRenderFilteredRecipes()
   }
 
-  // Refresh the list of recipes based on the current search term and filters
-  refreshFilteredRecipesList = () => {
+  // Refresh the list of recipes based on the current search term and filters in the model
+  updateAndRenderFilteredRecipes = () => {
     const recipes = this.recipesModel.getAllRecipes()
     const searchTerm = this.recipesModel.getSearchTerm()
 
@@ -59,7 +59,7 @@ export default class RecipesController {
     this.recipesView.renderRecipesList(filteredRecipes)
   }
 
-  // Refresh the list of ingredients based on the current list of recipes
+  // Refresh the list of ingredients in the model based on the current list of recipes
   refreshIngredientsList = () => {
     const ingredients = new Set()
     for (const recipe of this.recipesModel.filteredRecipes) {
