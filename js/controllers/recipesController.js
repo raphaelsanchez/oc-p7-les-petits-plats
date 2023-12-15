@@ -9,6 +9,7 @@ export default class RecipesController {
     this.recipesModel = recipesModel
     this.recipesView = recipesView
     this.recipesView.bindSearchInputChangeEvent(this.updateSearchTermAndRefresh)
+    this.recipesView.bindSearchFormSubmitEvent(this.updateSearchTermAndRefresh)
   }
 
   // Initialize the controller and refresh the ingredients list

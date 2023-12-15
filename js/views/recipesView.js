@@ -29,9 +29,7 @@ export default class RecipesView {
 
     searchForm.addEventListener("submit", (event) => {
       event.preventDefault()
-      const searchFormValue = searchInput.value
-      console.log(searchFormValue)
-      onFormSubmit(searchFormValue)
+      onFormSubmit(searchInput.value)
     })
   }
 
