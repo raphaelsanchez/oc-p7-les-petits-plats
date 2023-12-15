@@ -45,8 +45,41 @@ export default class RecipesController {
 
   // Filter the recipes based on the search term
   #filterRecipes = (recipes, searchTerm) => {
+<<<<<<< HEAD
     // Normalize and lowercase the search term
     const normalizedSearchTerm = this.#normalizeAndLowercase(searchTerm)
+=======
+    const normalizedSearchTerm = searchTerm
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+
+    return recipes.filter((recipe) => {
+      const recipeName = recipe.name
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+      const recipeDescription = recipe.description
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+      const recipeIngredients = recipe.ingredients.map((ingredient) =>
+        ingredient.ingredient
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase(),
+      )
+      const recipeUstensils = recipe.ustensils.map((ustensil) =>
+        ustensil
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase(),
+      )
+      const recipeAppliances = recipe.appliance
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+>>>>>>> 93eb57e26a96290b98c1186411c326230ef1cad0
 
     return recipes.filter((recipe) => {
       // Normalize and lowercase all the recipe data
