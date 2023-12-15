@@ -1,4 +1,7 @@
 .filters {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -7,6 +10,7 @@
   margin-inline: auto;
   padding-block: 1rem;
   padding-inline: clamp(2rem, 4vw + 0.5rem, 4rem);
+  background-color: var(--clr-neutral-300);
 }
 
 .filter {
