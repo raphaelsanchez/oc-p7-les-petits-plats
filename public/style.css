@@ -9,10 +9,16 @@
 
   /* Neutral color */
   --clr-neutral-900: #1b1b1b;
-  --clr-neutral-700: #7a7a7a;
+  --clr-neutral-700: #737373;
   --clr-neutral-500: #c4c4c4;
   --clr-neutral-300: #e5e5e5;
   --clr-neutral-100: #ffffff;
+
+  /* Fonts */
+  --ff-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  --ff-accent: "Anton", sans-serif;
 
   /* Border */
   --radius-100: 0.25rem;
@@ -143,6 +149,7 @@ textarea:not([rows]) {
     U+0308-0309, U+0323, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* manrope-latin-wght-normal */
+/*
 @font-face {
   font-family: "Manrope";
   font-style: normal;
@@ -153,12 +160,14 @@ textarea:not([rows]) {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0300-0301, U+0303-0304,
     U+0308-0309, U+0323, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+*/
 body {
-  font-family: "Manrope", sans-serif;
+  /* font-family: "Manrope", sans-serif; */
+  font-family: var(--ff-base);
 }
 /* Headings */
 :where(h1, h2, h3) {
-  font-family: "Anton", sans-serif;
+  font-family: var(--ff-accent);
 }
 /* links */
 a {
@@ -248,8 +257,8 @@ footer {
   background-color: var(--clr-accent);
   color: var(--clr-accent-contrast);
 }
-/* Recipes list */
-.recipes {
+/* Recipe-cards list */
+.recipes-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
   gap: 1.875rem;
@@ -258,31 +267,93 @@ footer {
   padding-block: 1rem;
   padding-inline: clamp(2rem, 4vw + 0.5rem, 4rem);
 }
-/* Recipe Card */
-.recipe {
+.recipes__no-recipes {
+  grid-column: 1 / -1;
+  padding: 1.25rem;
+  background-color: var(--clr-neutral-100);
+  border-radius: var(--radius-100);
+  border: 1px solid var(--clr-neutral-500);
+  text-align: center;
+  color: var(--clr-neutral-900);
+}
+/* Recipe-card Card */
+.recipe-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
   border-radius: var(--radius-300);
   overflow: hidden;
   background-color: var(--clr-neutral-100);
 }
-.recipe__image {
+/* Recipe card Header */
+.recipe-card__cover {
   width: 100%;
   height: 15rem;
+  overflow: hidden;
+}
+.recipe-card__cover-image {
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.recipe__content {
+.recipe-card__header,
+.recipe-card__body {
+  padding-inline: 1.25rem;
+}
+/* Recipe card Body */
+.recipe-card__body {
   display: grid;
   gap: 1.25rem;
-  padding: 1.25rem;
 }
-.recipe__title {
-  font-size: 1.125rem;
+.recipe-card__title {
+  font-size: 1.25rem;
   line-height: 1.4;
   text-wrap: balance;
 }
-.recipe-furnitures {
+.recipe-card__time {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background-color: var(--clr-accent);
+  color: var(--clr-accent-contrast);
+  border-radius: 100vmax;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+}
+.recipe-card__description-title,
+.recipe-card__ingredients-title {
+  color: var(--clr-neutral-700);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+.recipe-card__description-text {
+  margin-block: 1em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+}
+.recipe-card__ingredients-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+
+  padding: 0;
+  list-style: none;
+}
+.recipe-card__ingredient-name {
+  display: block;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.recipe-card__ingredient-quantity,
+.recipe-card__ingredient-unit {
+  color: var(--clr-neutral-700);
 }
 .attributes__title {
   grid-column: 1 / -1;
@@ -369,6 +440,11 @@ footer {
 .filter__option input {
   width: auto;
   margin-inline: 0;
+}
+.count {
+  margin-inline-start: auto;
+  font-family: var(--ff-accent);
+  font-size: 1.25rem;
 }
 .skip-links {
   position: fixed;

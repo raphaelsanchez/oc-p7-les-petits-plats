@@ -7,13 +7,15 @@
   <title>Les Petits Plats</title>
   <meta name="description" content="Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.">
   <!-- Favico -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="manifest" href="site.webmanifest">
   <!-- CSS -->
-  <link rel="stylesheet" href="/public/style.css">
+  <link rel="stylesheet" href="public/style.css">
+  <!-- JS -->
+  <script type="module" src="js/main.js" defer></script>
 </head>
 
 <body>
@@ -33,9 +35,10 @@
       <h1 class="site-header__title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.</h1>
 
       <!-- Search form -->
-      <form class="search-form" id="search">
+      <form class="search-form js-search-form" id="search"
+        aria-label="rechercher une recette, un ingredient, un ustensils, un appareil.">
         <label class="search-form__label" for="search-input">Rechercher une recette</label>
-        <input class="search-form__input" type="search" id="search-input"
+        <input class="search-form__input js-search-input" type="search" id="search-input"
           placeholder="Rechercher une recette, un ingrédient, ...">
         <button class="search-form__button" type="submit" aria-label="Lancer la recherche">
           <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -81,39 +84,14 @@
           <input type="search">
         </div>
       </div>
+      <div class="count js-recipes-counter"></div>
     </aside>
 
     <!-- Recipes list -->
     <section class="recipes">
-
       <h2 class="sr-only">Les recettes</h2>
-
-      <article class="recipe">
-        <img class="recipe__image" src="/assets/medias/Recette01.400.webp"
-          style="background-image: url(/assets/medias/Recette01.20.webp);" width="380" height="253" alt=""
-          loading="lazy">
-        <div class="recipe__content">
-          <h3 class="recipe__title">Limonade Coco</h3>
-
-          <div class="attributes recipe-description">
-            <h4 class="attributes__title">Recette</h4>
-            <p>Mettre les glaçons à votre goût dans le blender, Ajouter le lait la crème de coco, le jus de 2 citrons et
-              le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
-          </div>
-
-          <div class="attributes recipe-furnitures">
-            <h4 class="attributes__title">Ingredient</h4>
-            <div class="attribute">
-              <span class="attribute__label">Lait de coco</span>
-              <span class="attribute__content">400ml</span>
-            </div>
-            <div class="attribute">
-              <span class="attribute__label">Créme de coco</span>
-              <span class="attribute__content">4 cuillères</span>
-            </div>
-          </div>
-        </div>
-      </article>
+      <!-- Here injected recipes -->
+      <div class="recipes-list | js-recipes-container"></div>
     </section>
   </main>
 

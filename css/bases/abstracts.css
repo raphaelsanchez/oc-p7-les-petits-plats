@@ -9,10 +9,16 @@
 
   /* Neutral color */
   --clr-neutral-900: #1b1b1b;
-  --clr-neutral-700: #7a7a7a;
+  --clr-neutral-700: #737373;
   --clr-neutral-500: #c4c4c4;
   --clr-neutral-300: #e5e5e5;
   --clr-neutral-100: #ffffff;
+
+  /* Fonts */
+  --ff-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  --ff-accent: "Anton", sans-serif;
 
   /* Border */
   --radius-100: 0.25rem;

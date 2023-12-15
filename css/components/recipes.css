@@ -1,5 +1,5 @@
-/* Recipes list */
-.recipes {
+/* Recipe-cards list */
+.recipes-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
   gap: 1.875rem;
@@ -9,34 +9,104 @@
   padding-inline: clamp(2rem, 4vw + 0.5rem, 4rem);
 }
 
-/* Recipe Card */
-.recipe {
+.recipes__no-recipes {
+  grid-column: 1 / -1;
+  padding: 1.25rem;
+  background-color: var(--clr-neutral-100);
+  border-radius: var(--radius-100);
+  border: 1px solid var(--clr-neutral-500);
+  text-align: center;
+  color: var(--clr-neutral-900);
+}
+
+/* Recipe-card Card */
+.recipe-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
   border-radius: var(--radius-300);
   overflow: hidden;
   background-color: var(--clr-neutral-100);
 }
 
-.recipe__image {
+/* Recipe card Header */
+.recipe-card__cover {
   width: 100%;
   height: 15rem;
+  overflow: hidden;
+}
+
+.recipe-card__cover-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.recipe__content {
-  display: grid;
-  gap: 1.25rem;
-  padding: 1.25rem;
+.recipe-card__header,
+.recipe-card__body {
+  padding-inline: 1.25rem;
 }
 
-.recipe__title {
-  font-size: 1.125rem;
+/* Recipe card Body */
+.recipe-card__body {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.recipe-card__title {
+  font-size: 1.25rem;
   line-height: 1.4;
   text-wrap: balance;
 }
 
-.recipe-furnitures {
+.recipe-card__time {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background-color: var(--clr-accent);
+  color: var(--clr-accent-contrast);
+  border-radius: 100vmax;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+}
+
+.recipe-card__description-title,
+.recipe-card__ingredients-title {
+  color: var(--clr-neutral-700);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.recipe-card__description-text {
+  margin-block: 1em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+}
+
+.recipe-card__ingredients-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+
+  padding: 0;
+  list-style: none;
+}
+
+.recipe-card__ingredient-name {
+  display: block;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.recipe-card__ingredient-quantity,
+.recipe-card__ingredient-unit {
+  color: var(--clr-neutral-700);
 }
 
 .attributes__title {

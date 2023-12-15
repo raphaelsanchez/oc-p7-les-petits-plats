@@ -67,3 +67,9 @@
   width: auto;
   margin-inline: 0;
 }
+
+.count {
+  margin-inline-start: auto;
+  font-family: var(--ff-accent);
+  font-size: 1.25rem;
+}
