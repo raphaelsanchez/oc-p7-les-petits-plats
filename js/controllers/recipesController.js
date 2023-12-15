@@ -37,19 +37,43 @@ export default class RecipesController {
 
   // Filter the recipes based on the search term
   #filterRecipes = (recipes, searchTerm) => {
+    const normalizedSearchTerm = searchTerm
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+
     return recipes.filter((recipe) => {
-      const recipeName = recipe.name.toLowerCase()
-      const recipeDescription = recipe.description.toLowerCase()
-      const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase())
-      const recipeUstensils = recipe.ustensils.map((ustensil) => ustensil.toLowerCase())
-      const recipeAppliances = recipe.appliance.toLowerCase()
+      const recipeName = recipe.name
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+      const recipeDescription = recipe.description
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+      const recipeIngredients = recipe.ingredients.map((ingredient) =>
+        ingredient.ingredient
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase(),
+      )
+      const recipeUstensils = recipe.ustensils.map((ustensil) =>
+        ustensil
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase(),
+      )
+      const recipeAppliances = recipe.appliance
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
 
       return (
-        recipeName.includes(searchTerm.toLowerCase()) ||
-        recipeDescription.includes(searchTerm.toLowerCase()) ||
-        recipeIngredients.includes(searchTerm.toLowerCase()) ||
-        recipeUstensils.includes(searchTerm.toLowerCase()) ||
-        recipeAppliances.includes(searchTerm.toLowerCase())
+        recipeName.includes(normalizedSearchTerm) ||
+        recipeDescription.includes(normalizedSearchTerm) ||
+        recipeIngredients.includes(normalizedSearchTerm) ||
+        recipeUstensils.includes(normalizedSearchTerm) ||
+        recipeAppliances.includes(normalizedSearchTerm)
       )
     })
   }
