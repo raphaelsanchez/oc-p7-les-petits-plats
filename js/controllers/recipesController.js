@@ -1,4 +1,10 @@
+const MIN_SEARCH_TERM_LENGTH = 3
+
 export default class RecipesController {
+  // create a private property to store the ingredients and avoid mutability
+  #ingredients = new Set()
+
+  // Initialize the controller with the model and the view
   constructor(recipesModel, recipesView) {
     this.recipesModel = recipesModel
     this.recipesView = recipesView
@@ -8,7 +14,7 @@ export default class RecipesController {
   // Initialize the controller and refresh the ingredients list
   initializeController() {
     this.recipesModel.init()
-    this.refreshIngredientsList()
+    this.#refreshIngredientsList()
   }
 
   // Render the initial list of recipes from the model
@@ -29,17 +35,9 @@ export default class RecipesController {
     this.updateAndRenderFilteredRecipes()
   }
 
-  // Refresh the list of recipes based on the current search term and filters in the model
-  updateAndRenderFilteredRecipes = () => {
-    const recipes = this.recipesModel.getAllRecipes()
-    const searchTerm = this.recipesModel.getSearchTerm()
-
-    if (searchTerm === "" || searchTerm.length < 3) {
-      this.recipesView.renderRecipesList(recipes)
-      return
-    }
-
-    const filteredRecipes = recipes.filter((recipe) => {
+  // Filter the recipes based on the search term
+  #filterRecipes = (recipes, searchTerm) => {
+    return recipes.filter((recipe) => {
       const recipeName = recipe.name.toLowerCase()
       const recipeDescription = recipe.description.toLowerCase()
       const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase())
@@ -54,19 +52,33 @@ export default class RecipesController {
         recipeAppliances.includes(searchTerm.toLowerCase())
       )
     })
-
-    this.recipesModel.setFilteredRecipes(filteredRecipes)
-    this.recipesView.renderRecipesList(filteredRecipes)
   }
 
   // Refresh the list of ingredients in the model based on the current list of recipes
-  refreshIngredientsList = () => {
-    const ingredients = new Set()
+  #refreshIngredientsList = () => {
     for (const recipe of this.recipesModel.filteredRecipes) {
       for (const ingredient of recipe.ingredients) {
-        ingredients.add(ingredient.ingredient)
+        this.#ingredients.add(ingredient.ingredient)
       }
     }
+    // Convert the Set to an array
     this.recipesModel.setIngredients(ingredients)
+  }
+
+  // Refresh the list of recipes based on the current search term and filters in the model
+  updateAndRenderFilteredRecipes = () => {
+    const recipes = this.recipesModel.getAllRecipes()
+    const searchTerm = this.recipesModel.getSearchTerm()
+    // If the search term is empty or too short, display the full list of recipes
+    if (searchTerm === "" || searchTerm.length < MIN_SEARCH_TERM_LENGTH) {
+      this.recipesView.renderRecipesList(recipes)
+      return
+    }
+    // Filter the recipes based on the search term
+    const filteredRecipes = this.#filterRecipes(recipes, searchTerm)
+    // Update the list of ingredients in the model
+    this.recipesModel.setFilteredRecipes(filteredRecipes)
+    // Refresh the list of ingredients in the model
+    this.recipesView.renderRecipesList(filteredRecipes)
   }
 }
