@@ -22,17 +22,6 @@ export default class RecipesView {
     })
   }
 
-  // Bind the updateRecipesList method when form is submitted
-  bindSearchFormSubmitEvent(onFormSubmit) {
-    const searchForm = document.querySelector(".js-search-form")
-    const searchInput = document.querySelector(".js-search-input")
-
-    searchForm.addEventListener("submit", (event) => {
-      event.preventDefault()
-      onFormSubmit(searchInput.value)
-    })
-  }
-
   // Refresh recipes counter
   updateRecipesCount(count) {
     const recipesCount = document.querySelector(".js-recipes-counter")

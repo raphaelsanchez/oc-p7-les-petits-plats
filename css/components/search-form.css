@@ -7,8 +7,24 @@
   border-radius: var(--radius-200);
 }
 
+.search-form--overflown {
+  position: fixed;
+  width: 50vw;
+  left: 50%;
+  top: 50%;
+  z-index: 1001;
+  box-shadow: 0 0 0 100vmax rgba(0 0 0 / 0.8);
+  transform: translate(-50%, -50%);
+}
+
 .search-form:has(.search-form__input:focus-within) {
   outline: 0.25rem solid var(--clr-accent);
+}
+
+.search-form__key-helper {
+  font-family: monospace;
+  color: var(--clr-neutral-700);
+  margin-inline: 0.5rem;
 }
 
 .search-form__label {

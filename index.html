@@ -40,6 +40,7 @@
         <label class="search-form__label" for="search-input">Rechercher une recette</label>
         <input class="search-form__input js-search-input" type="search" id="search-input"
           placeholder="Rechercher une recette, un ingrédient, ...">
+        <span class="search-form__key-helper"></span>
         <button class="search-form__button" type="submit" aria-label="Lancer la recherche">
           <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true">
@@ -54,7 +55,7 @@
   <main class="site-content" id="content">
 
     <!-- Recipes filters -->
-    <aside class="filters">
+    <aside class="filters | js-filters-container">
       <h2 class="sr-only">Filtrer les recettes</h2>
       <div class="filter">
         <button class="filter__trigger">Ingrédients</button>

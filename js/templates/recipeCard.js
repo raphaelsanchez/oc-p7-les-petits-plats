@@ -6,7 +6,7 @@ export default function recipeCard(recipe) {
   const image = `assets/medias/${imageName}.400.webp`
 
   return `
-      <article class="recipe-card">
+      <article class="recipe-card" tabindex="0">
         <figure class="recipe-card__cover">
           <img class="recipe-card__cover-image" src="${image}" data-placeholder="${imagePlaceholder}" alt="${
             recipe.name
