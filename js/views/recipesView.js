@@ -11,7 +11,7 @@ export default class RecipesView {
   }
 
   // Bind the updateRecipesList method to the search input
-  bindSearchInputEvent(onInputChange) {
+  bindSearchInputChangeEvent(onInputChange) {
     const searchInput = document.querySelector(".js-search-input")
     searchInput.addEventListener("input", (event) => {
       clearTimeout(this.timeout)
@@ -23,7 +23,7 @@ export default class RecipesView {
   }
 
   // Bind the updateRecipesList method when form is submitted
-  bindSearchFormEvent(onFormSubmit) {
+  bindSearchFormSubmitEvent(onFormSubmit) {
     const searchForm = document.querySelector(".js-search-form")
     const searchInput = document.querySelector(".js-search-input")
 
@@ -35,19 +35,30 @@ export default class RecipesView {
     })
   }
 
-  // Render the list of recipes in the DOM and update the counter
-  renderRecipes(recipes) {
-    const recipesContainer = document.querySelector(".js-recipes-container")
+  // Refresh recipes counter
+  updateRecipesCount(count) {
     const recipesCount = document.querySelector(".js-recipes-counter")
+    recipesCount.textContent = `${count} ${count > 1 ? "recettes" : "recette"}`
+  }
 
-    // Message to display when no recipes match the search criteria
-    const noRecipesMessage = `<div class="recipes__no-recipes">Aucune recette ne correspond à votre critère... Vous pouvez chercher "tarte aux pommes", "poisson", etc...</div>`
+  // Render the "No recipes" message
+  renderNoRecipesMsg() {
+    return `<div class="recipes__no-recipes">Aucune recette ne correspond à votre critère... Vous pouvez chercher "tarte aux pommes", "poisson", etc...</div>`
+  }
+
+  // Render a list of recipes cards
+  renderRecipeCards(recipes) {
+    return recipes.map((recipe) => this.recipeCard(recipe)).join("")
+  }
+
+  // Render the list of recipes in the DOM and update the counter
+  renderRecipesList(recipes) {
+    const recipesContainer = document.querySelector(".js-recipes-container")
 
     // Update the counter with the number of recipes
-    recipesCount.textContent = `${recipes.length} ${recipes.length > 1 ? "recettes" : "recette"}`
+    this.updateRecipesCount(recipes.length)
 
     // Display the recipes or a message if no recipes were found
-    recipesContainer.innerHTML =
-      recipes.length === 0 ? noRecipesMessage : recipes.map((recipe) => this.recipeCard(recipe)).join("")
+    recipesContainer.innerHTML = recipes.length === 0 ? this.renderNoRecipesMsg() : this.renderRecipeCards(recipes)
   }
 }

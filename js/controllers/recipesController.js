@@ -2,7 +2,7 @@ export default class RecipesController {
   constructor(recipesModel, recipesView) {
     this.recipesModel = recipesModel
     this.recipesView = recipesView
-    this.recipesView.bindSearchInputEvent(this.handleSearchInputEvent)
+    this.recipesView.bindSearchInputChangeEvent(this.handleSearchInputEvent)
   }
 
   // Initialize the controller
@@ -14,7 +14,7 @@ export default class RecipesController {
   // Render the initial list of recipes
   handleInitialRecipesList() {
     const recipes = this.recipesModel.getAllRecipes()
-    this.recipesView.renderRecipes(recipes)
+    this.recipesView.renderRecipesList(recipes)
   }
 
   // Update the search term and refresh the list of recipes
@@ -35,7 +35,7 @@ export default class RecipesController {
     const searchTerm = this.recipesModel.getSearchTerm()
 
     if (searchTerm === "" || searchTerm.length < 3) {
-      this.recipesView.renderRecipes(recipes)
+      this.recipesView.renderRecipesList(recipes)
       return
     }
 
@@ -56,7 +56,7 @@ export default class RecipesController {
     })
 
     this.recipesModel.setFilteredRecipes(filteredRecipes)
-    this.recipesView.renderRecipes(filteredRecipes)
+    this.recipesView.renderRecipesList(filteredRecipes)
   }
 
   // Refresh the list of ingredients based on the current list of recipes
