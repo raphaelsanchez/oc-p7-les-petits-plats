@@ -1,7 +1,21 @@
-export default class SearchController {
+export default class FiltersController {
   constructor(searchView) {
     this.searchView = searchView
     this.searchView.bindSearchFormSubmitEvent(this.submitSearchForm)
+    this.searchView.bindFiltersClickEvent(this.updateFilterAndRefresh)
+  }
+
+  updateFilterAndRefresh(onFilterClick) {
+    // Toggles the filter
+    const filterContent = onFilterClick.parentElement
+    filterContent.classList.toggle("is-open")
+
+    // close when click other place
+    document.addEventListener("click", (event) => {
+      if (!filterContent.contains(event.target)) {
+        filterContent.classList.remove("is-open")
+      }
+    })
   }
 
   // Initialize the controller by setting up event listeners

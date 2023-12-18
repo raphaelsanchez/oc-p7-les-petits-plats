@@ -1,7 +1,8 @@
-export default class SearchView {
+export default class FiltersView {
   constructor() {
     this.searchForm = this.selectElement(".js-search-form")
     this.searchInput = this.selectElement(".js-search-input")
+    this.filters = this.selectElements(".filter")
   }
 
   // Select an element and throw an error if it doesn't exist
@@ -11,6 +12,24 @@ export default class SearchView {
       throw new Error(`No element found with selector "${selector}"`)
     }
     return element
+  }
+
+  // Select all elements and throw an error if it doesn't exist
+  selectElements(selector) {
+    const elements = document.querySelectorAll(selector)
+    if (!elements) {
+      throw new Error(`No element found with selector "${selector}"`)
+    }
+    return elements
+  }
+
+  // Attach event listeners to the filters and open it on click
+  bindFiltersClickEvent(onFilterClick) {
+    this.filters.forEach((filter) => {
+      filter.addEventListener("click", (event) => {
+        onFilterClick(event.target)
+      })
+    })
   }
 
   // Bind the form submit event to the controller
