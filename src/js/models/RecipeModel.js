@@ -1,46 +1,40 @@
-// Utils import
 import { normalizeString } from "../utils"
 
 export default class RecipeModel {
-  constructor(data) {
-    if (!Array.isArray(data)) {
-      throw new TypeError("Expected data to be an array")
+  constructor(recipeData) {
+    if (!Array.isArray(recipeData)) {
+      throw new TypeError("Expected recipeData to be an array")
     }
-    this.recipes = data
+    this.allRecipes = recipeData
     this.activeFilters = []
   }
 
-  // Getters
-  getRecipes() {
-    // get all recipes
-    return this.recipes
+  getAllRecipes() {
+    return this.allRecipes
   }
 
-  // Get recipes by search string
-  getRecipesBySearchString(searchString) {
-    const searchStrings = normalizeString(searchString).split(" ")
-    return this.recipes.filter((recipe) =>
-      this.recipeMatchesSearchString(recipe, searchStrings)
+  findRecipesBySearchTerm(searchTerm) {
+    const normalizedSearchTerms = normalizeString(searchTerm).split(" ")
+    return this.allRecipes.filter((recipe) =>
+      this.isRecipeMatchingSearchTerms(recipe, normalizedSearchTerms)
     )
   }
 
-  // Check if a recipe matches a search string
-  recipeMatchesSearchString(recipe, searchStrings) {
-    // use normalizeString function to improve search
-    function includesNormalized(mainString, subString) {
-      return normalizeString(mainString).includes(subString)
+  isRecipeMatchingSearchTerms(recipe, searchTerms) {
+    function isTermIncludedInString(mainString, term) {
+      return normalizeString(mainString).includes(term)
     }
 
-    return searchStrings.every(
-      (searchString) =>
-        includesNormalized(recipe.name, searchString) ||
-        includesNormalized(recipe.description, searchString) ||
+    return searchTerms.every(
+      (term) =>
+        isTermIncludedInString(recipe.name, term) ||
+        isTermIncludedInString(recipe.description, term) ||
         recipe.ingredients.some((ingredient) =>
-          includesNormalized(ingredient.ingredient, searchString)
+          isTermIncludedInString(ingredient.ingredient, term)
         ) ||
-        includesNormalized(recipe.appliance, searchString) ||
+        isTermIncludedInString(recipe.appliance, term) ||
         recipe.ustensils.some((utensil) =>
-          includesNormalized(utensil, searchString)
+          isTermIncludedInString(utensil, term)
         )
     )
   }

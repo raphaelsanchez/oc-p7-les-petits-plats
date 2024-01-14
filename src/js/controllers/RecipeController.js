@@ -4,23 +4,34 @@ export default class RecipeController {
     this.view = view
   }
 
-  init() {
-    this.view.renderRecipes(this.model.getRecipes())
-    this.view.renderRecipesCounter(this.model.getRecipes().length)
-    this.view.bindSearchInputEvent(this.handleSearchInput)
+  initialize() {
+    this.renderAllRecipes()
+    this.bindSearchInputEvent()
   }
 
-  handleSearchInput = (value) => {
-    const recipes =
-      value.length >= 3
-        ? this.model.getRecipesBySearchString(value)
-        : this.model.getRecipes()
-
-    this.updateRecipes(recipes)
+  handleUserInput = (inputValue) => {
+    const recipes = this.getRecipesBasedOnInput(inputValue)
+    this.updateAndRenderRecipes(recipes)
   }
 
-  updateRecipes(recipes) {
-    this.view.renderRecipes(recipes)
-    this.view.renderRecipesCounter(recipes.length)
+  getRecipesBasedOnInput(inputValue) {
+    return inputValue.length >= 3
+      ? this.model.findRecipesBySearchTerm(inputValue)
+      : this.model.getAllRecipes()
+  }
+
+  updateAndRenderRecipes(recipes) {
+    this.view.displayRecipes(recipes)
+    this.view.displayRecipeCount(recipes.length)
+  }
+
+  renderAllRecipes() {
+    const allRecipes = this.model.getAllRecipes()
+    this.view.displayRecipes(allRecipes)
+    this.view.displayRecipeCount(allRecipes.length)
+  }
+
+  bindSearchInputEvent() {
+    this.view.bindSearchInput(this.handleUserInput)
   }
 }

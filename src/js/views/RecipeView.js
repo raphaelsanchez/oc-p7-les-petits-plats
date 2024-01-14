@@ -1,19 +1,18 @@
-// Components imports
 import Notice from "../components/Notice"
 import RecipeCard from "../components/RecipeCard"
-
-// Utils import
 import { debounce } from "../utils.js"
 
 export default class RecipeView {
   constructor() {
-    this.recipesList = document.querySelector("[data-recipes-list]")
-    this.recipesCounter = document.querySelector("[data-recipes-counter]")
-    this.recipesSearchInput = document.querySelector("[data-recipes-search]")
+    this.recipeListElement = document.querySelector("[data-recipes-list]")
+    this.recipeCounterElement = document.querySelector("[data-recipes-counter]")
+    this.recipeSearchInputElement = document.querySelector(
+      "[data-recipes-search]"
+    )
   }
 
-  bindSearchInputEvent(handler) {
-    this.recipesSearchInput.addEventListener(
+  bindSearchInput(handler) {
+    this.recipeSearchInputElement.addEventListener(
       "input",
       debounce((event) => {
         handler(event.target.value)
@@ -21,25 +20,25 @@ export default class RecipeView {
     )
   }
 
-  renderRecipesCounter(count) {
-    this.recipesCounter.textContent = `${count} ${count > 1 ? "recettes" : "recette"}`
+  displayRecipeCount(count) {
+    this.recipeCounterElement.textContent = `${count} ${count > 1 ? "recettes" : "recette"}`
   }
 
-  renderNoRecipesMsg(type, msg) {
+  displayNoRecipesMessage() {
     return Notice(
       "info",
       "Aucune recette ne correspond à votre critère... Vous pouvez chercher 'tarte aux pommes', 'poisson', etc..."
     )
   }
 
-  renderRecipesCards(recipes) {
+  createRecipeCards(recipes) {
     return recipes.map((recipe) => RecipeCard(recipe)).join("")
   }
 
-  renderRecipes(recipes) {
-    this.recipesList.innerHTML =
+  displayRecipes(recipes) {
+    this.recipeListElement.innerHTML =
       recipes.length === 0
-        ? this.renderNoRecipesMsg()
-        : this.renderRecipesCards(recipes)
+        ? this.displayNoRecipesMessage()
+        : this.createRecipeCards(recipes)
   }
 }
