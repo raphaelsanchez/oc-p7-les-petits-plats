@@ -4,16 +4,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.">
   <title>Les Petits Plats</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 
 <body>
-  <header></header>
-  <main></main>
-  <footer></footer>
+  <header class="bg-neutral-900 p-8">
+    <div class="container">
+      <input class="rounded-lg p-4 w-full" type="search" placeholder="Rechercher une recette, un ingrédient, ..."
+        data-recipes-search>
+    </div>
+  </header>
+
+  <main class="container p-8 grid gap-8" id="content">
+    <aside class="flex">
+      <div data-recipes-filters></div>
+      <div class="font-display text-xl ms-auto" data-recipes-counter></div>
+    </aside>
+    <section class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16" data-recipes-list></section>
+  </main>
+
+  <footer class="p-8 text-center text-neutral-600">
+    <p>© 2023 Les Petits Plats, OpenClassrooms project — Tous droits réservés.</p>
+  </footer>
   <!-- Load main script -->
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/js/main.js"></script>
 </body>
 
 </html>
