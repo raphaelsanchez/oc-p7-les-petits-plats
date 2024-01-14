@@ -1,5 +1,4 @@
 const Notice = (type, msg) => {
-  // Define classes depending on the type of notice
   const noticeType = {
     info: "bg-neutral-300 text-neutral-900",
     error: "bg-red-100 text-red-800",
@@ -9,6 +8,12 @@ const Notice = (type, msg) => {
 
   // Get the class for the given type
   const noticeClasses = noticeType[type]
+
+  // Handle unknown notice types
+  if (!noticeClasses) {
+    console.error(`Unknown notice type: ${type}`)
+    return ""
+  }
 
   return `
     <div class="p-4 rounded-lg col-span-full ${noticeClasses}">
