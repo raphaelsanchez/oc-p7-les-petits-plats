@@ -25,17 +25,20 @@ export default class RecipeModel {
       return normalizeString(mainString).includes(term)
     }
 
-    return searchTerms.every(
-      (term) =>
+    const isTermIncludedInRecipe = (recipe, term) => {
+      return (
         isTermIncludedInString(recipe.name, term) ||
         isTermIncludedInString(recipe.description, term) ||
+        isTermIncludedInString(recipe.appliance, term) ||
         recipe.ingredients.some((ingredient) =>
           isTermIncludedInString(ingredient.ingredient, term)
         ) ||
-        isTermIncludedInString(recipe.appliance, term) ||
         recipe.ustensils.some((utensil) =>
           isTermIncludedInString(utensil, term)
         )
-    )
+      )
+    }
+
+    return searchTerms.every((term) => isTermIncludedInRecipe(recipe, term))
   }
 }
