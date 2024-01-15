@@ -5,13 +5,13 @@ export default class RecipeController {
   }
 
   initialize() {
-    this.renderAllRecipes()
+    this.displayAllRecipes()
     this.bindSearchInputEvent()
   }
 
   handleUserInput = (inputValue) => {
     const recipes = this.getRecipesBasedOnInput(inputValue)
-    this.updateAndRenderRecipes(recipes)
+    this.updateAndDisplayRecipes(recipes)
   }
 
   getRecipesBasedOnInput(inputValue) {
@@ -20,12 +20,12 @@ export default class RecipeController {
       : this.model.getAllRecipes()
   }
 
-  updateAndRenderRecipes(recipes) {
+  updateAndDisplayRecipes(recipes) {
     this.view.displayRecipes(recipes)
     this.view.displayRecipeCount(recipes.length)
   }
 
-  renderAllRecipes() {
+  displayAllRecipes() {
     const allRecipes = this.model.getAllRecipes()
     this.view.displayRecipes(allRecipes)
     this.view.displayRecipeCount(allRecipes.length)
