@@ -44,3 +44,21 @@
     font-family: "Manrope", system-ui, sans-serif;
   }
 }
+
+@layer components {
+  .dropdown-button[aria-expanded="true"] {
+    @apply shadow-lg rounded-es-none rounded-ee-none;
+  }
+  .dropdown-button[aria-expanded="true"] svg {
+    @apply -scale-y-100 transition-transform;
+  }
+  .dropdown-content {
+    @apply bg-white rounded-es-lg rounded-ee-lg shadow-lg;
+  }
+  .filter__list {
+    @apply bg-white p-4 flex flex-col gap-2;
+  }
+  .filter__button {
+    @apply text-left;
+  }
+}

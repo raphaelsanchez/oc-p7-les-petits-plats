@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 
-<body>
+<body class=" bg-neutral-300">
   <header class="bg-neutral-900 p-8">
     <div class="container">
       <input class="rounded-lg p-4 w-full" type="search" placeholder="Rechercher une recette, un ingrédient, ..."
@@ -18,9 +18,48 @@
   </header>
 
   <main class="container p-8 grid gap-8" id="content">
-    <aside class="flex">
-      <div data-recipes-filters></div>
+    <aside class="flex items-center flex-wrap gap-8">
+      <div class="dropdown | relative min-w-52">
+        <button class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg"
+          aria-expanded="false">
+          <span class="pointer-events-none">Ingrédients</span>
+          <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round" />
+          </svg>
+        </button>
+        <section
+          class="dropdown-content | absolute top-full inset-x-0 z-10 w-full max-h-0 open:max-h-60 focus:max-h-60 transition-all overflow-auto"
+          data-recipes-filters="ingredients"></section>
+      </div>
+      <div class="dropdown | relative min-w-52">
+        <button class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg"
+          aria-expanded="false">
+          <span class="pointer-events-none">Appareils</span>
+          <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round" />
+          </svg>
+        </button>
+        <section
+          class="dropdown-content | absolute top-full inset-x-0 z-10 w-full max-h-0 open:max-h-60 focus:max-h-60 transition-all overflow-auto"
+          data-recipes-filters="appliances"></section>
+      </div>
+      <div class="dropdown | relative min-w-52">
+        <button class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg"
+          aria-expanded="false">
+          <span class="pointer-events-none">Ustensils</span>
+          <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round" />
+          </svg>
+        </button>
+        <section
+          class="dropdown-content | absolute top-full inset-x-0 z-10 w-full max-h-0 open:max-h-60 focus:max-h-60 transition-all overflow-auto"
+          data-recipes-filters="utensils"></section>
+      </div>
       <div class="font-display text-xl ms-auto" data-recipes-counter></div>
+      <ul class="w-full flex gap-4" data-active-filters></ul>
     </aside>
     <section class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16" data-recipes-list></section>
   </main>
