@@ -4,17 +4,32 @@ export default class RecipeController {
     this.view = view
   }
 
+  // Initialization methods
   initialize() {
     this.displayAllRecipes()
     this.bindEvents()
   }
 
+  // Event binding methods
   bindEvents() {
     this.bindSearchInputEvent()
     this.bindFilterClickEvent()
     this.bindFilterRemoveEvent()
   }
 
+  bindSearchInputEvent() {
+    this.view.bindSearchInput(this.handleUserInput)
+  }
+
+  bindFilterClickEvent() {
+    this.view.bindFilterItemClick(this.handleFilterClick)
+  }
+
+  bindFilterRemoveEvent() {
+    this.view.bindFilterRemoveClick(this.handleFilterRemove.bind(this))
+  }
+
+  // Event handling methods
   handleUserInput = (inputValue) => {
     const recipes = this.getRecipesBasedOnInput(inputValue)
     this.updateAndDisplayRecipes(recipes)
@@ -27,18 +42,13 @@ export default class RecipeController {
     this.updateDisplayAndBindEvents(recipes)
   }
 
-  updateDisplayAndBindEvents(recipes) {
-    this.updateAndDisplayRecipes(recipes)
-    this.displayActiveFilters()
-    this.bindEvents()
-  }
-
   handleFilterRemove(filter) {
     this.model.removeActiveFilter(filter)
     const recipes = this.getRecipesBasedOnFilter()
     this.updateDisplayAndBindEvents(recipes)
   }
 
+  // Recipe retrieval methods
   getRecipesBasedOnInput(inputValue) {
     return inputValue.length >= 3
       ? this.model.findRecipesBySearchTerm(inputValue)
@@ -51,6 +61,7 @@ export default class RecipeController {
       : this.model.getAllRecipes()
   }
 
+  // Display methods
   updateAndDisplayRecipes(recipes) {
     const filters = this.model.findFiltersByRecipes(recipes)
     this.view.displayRecipes(recipes)
@@ -71,15 +82,10 @@ export default class RecipeController {
     this.view.displayActiveFilters(activeFilters)
   }
 
-  bindSearchInputEvent() {
-    this.view.bindSearchInput(this.handleUserInput)
-  }
-
-  bindFilterClickEvent() {
-    this.view.bindFilterItemClick(this.handleFilterClick)
-  }
-
-  bindFilterRemoveEvent() {
-    this.view.bindFilterRemoveClick(this.handleFilterRemove.bind(this))
+  // Update methods
+  updateDisplayAndBindEvents(recipes) {
+    this.updateAndDisplayRecipes(recipes)
+    this.displayActiveFilters()
+    this.bindEvents()
   }
 }

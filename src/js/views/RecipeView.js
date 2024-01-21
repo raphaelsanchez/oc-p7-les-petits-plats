@@ -7,6 +7,7 @@ import { normalizeString } from "../utils/normalizer"
 
 export default class RecipeView {
   constructor() {
+    // Initialize DOM elements
     this.recipeListElement = document.querySelector("[data-recipes-list]")
     this.recipeCounterElement = document.querySelector("[data-recipes-counter]")
     this.recipeSearchInputElement = document.querySelector(
@@ -16,6 +17,7 @@ export default class RecipeView {
     this.addDropdownToggleHandler()
   }
 
+  // Search methods
   bindSearchInput(handler) {
     this.recipeSearchInputElement.addEventListener(
       "input",
@@ -25,8 +27,9 @@ export default class RecipeView {
     )
   }
 
+  // Recipe display methods
   displayRecipeCount(count) {
-    this.recipeCounterElement.textContent = `${count} ${count > 1 ? "recettes" : "recette"}`
+    this.recipeCounterElement.textContent = `${count} recette${count > 1 ? "s" : ""}`
   }
 
   displayNoRecipesMessage() {
@@ -47,7 +50,7 @@ export default class RecipeView {
         : this.createRecipeCards(recipes)
   }
 
-  // Filters
+  // Filter methods
   selectFilterContainer(filterType) {
     return document.querySelector(`[data-recipes-filters="${filterType}"]`)
   }
@@ -98,11 +101,16 @@ export default class RecipeView {
     })
   }
 
-  displayFilters(filters) {
+  displayFilters(filters, activeFilters) {
     const filterTypes = ["ingredients", "appliances", "utensils"]
 
     filterTypes.forEach((filterType) => {
-      const sortedFilters = [...filters[filterType]].sort()
+      let sortedFilters = [...filters[filterType]].sort()
+      if (activeFilters && activeFilters[filterType]) {
+        sortedFilters = sortedFilters.filter(
+          (filter) => !activeFilters[filterType].includes(filter)
+        )
+      }
       const filterContainer = this.selectFilterContainer(filterType)
       filterContainer.innerHTML = this.generateFilterListHTML(
         filterType,

@@ -10,6 +10,7 @@ export default class RecipeModel {
     this.activeFilters = []
   }
 
+  // Getter methods
   getAllRecipes() {
     return this.allRecipes
   }
@@ -22,6 +23,37 @@ export default class RecipeModel {
     return this.activeFilters
   }
 
+  // Setter methods
+  setFilteredRecipes(recipes) {
+    this.filteredRecipes = this.allRecipes.filter((recipe) => {
+      return this.isRecipeMatchingActiveFilters(recipe, filters)
+    })
+  }
+
+  setActiveFilters(filter) {
+    const normalizedFilter = normalizeString(filter)
+    const filterIndex = this.activeFilters.indexOf(normalizedFilter)
+
+    if (filterIndex === -1) {
+      this.activeFilters.push(normalizedFilter)
+    } else {
+      this.activeFilters.splice(filterIndex, 1)
+    }
+
+    if (this.activeFilters.length === 0) {
+      this.activeFilters = []
+    }
+  }
+
+  removeActiveFilter(filter) {
+    const filterIndex = this.activeFilters.indexOf(filter)
+
+    if (filterIndex !== -1) {
+      this.activeFilters.splice(filterIndex, 1)
+    }
+  }
+
+  // Search methods
   findRecipesBySearchTerm(searchTerm) {
     const normalizedSearchTerms = normalizeString(searchTerm).split(" ")
     return this.allRecipes.filter((recipe) =>
@@ -51,6 +83,7 @@ export default class RecipeModel {
     return searchTerms.every((term) => isTermIncludedInRecipe(recipe, term))
   }
 
+  // Filter methods
   findRecipesByActiveFilters() {
     return this.allRecipes.filter((recipe) =>
       this.isRecipeMatchingActiveFilters(recipe, this.activeFilters)
@@ -73,6 +106,7 @@ export default class RecipeModel {
     return filter.every((filter) => isFilterIncludedInRecipe(recipe, filter))
   }
 
+  // Method to find filters by recipes
   findFiltersByRecipes(recipes) {
     const filters = {
       ingredients: new Set(),
@@ -89,34 +123,5 @@ export default class RecipeModel {
     })
 
     return filters
-  }
-
-  setFilteredRecipes(recipes) {
-    this.filteredRecipes = this.allRecipes.filter((recipe) => {
-      return this.isRecipeMatchingActiveFilters(recipe, filters)
-    })
-  }
-
-  setActiveFilters(filter) {
-    const normalizedFilter = normalizeString(filter)
-    const filterIndex = this.activeFilters.indexOf(normalizedFilter)
-
-    if (filterIndex === -1) {
-      this.activeFilters.push(normalizedFilter)
-    } else {
-      this.activeFilters.splice(filterIndex, 1)
-    }
-
-    if (this.activeFilters.length === 0) {
-      this.activeFilters = []
-    }
-  }
-
-  removeActiveFilter(filter) {
-    const filterIndex = this.activeFilters.indexOf(filter)
-
-    if (filterIndex !== -1) {
-      this.activeFilters.splice(filterIndex, 1)
-    }
   }
 }
