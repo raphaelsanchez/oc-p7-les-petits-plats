@@ -1,5 +1,8 @@
 // Styles import
 import "../css/style.css"
+// Import logo to be used in the HTML
+import "../images/logo.svg"
+import "../images/hero-background.webp"
 
 // Data import
 import { recipes as recipesData } from "./data/recipes.js"

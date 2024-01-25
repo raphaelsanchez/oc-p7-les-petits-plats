@@ -19,7 +19,11 @@ export default {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "hero-background": "url('/src/images/hero-background.webp')",
+      },
+    },
   },
   plugins: [],
 }

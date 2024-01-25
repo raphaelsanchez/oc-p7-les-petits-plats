@@ -24,8 +24,8 @@ const RecipeCard = (recipe) => {
 
   // Return the recipe card
   return `
-    <article class="bg-white rounded-lg shadow-xl overflow-hidden relative" id="recipe-${id}">
-      <img class="w-full aspect-[380/250] object-cover" src="${recipeImage}" alt="Illustration ${name}" loading="lazy" />
+    <article class="bg-white rounded-lg shadow-xl overflow-hidden relative outline-none focus-visible:ring ring-accent" id="recipe-${id}" tabindex="0">
+      <img class="w-full aspect-[380/250] object-cover" src="${recipeImage}" alt="Photo d'une recette de ${name}" loading="lazy" />
       <div class="px-4 py-8">
         <h3 class="font-display text-xl">${name}</h3>
         <p class="absolute top-4 right-4 bg-accent py-2 px-4 rounded-full text-sm">${time} min</p>
