@@ -37,5 +37,5 @@ function closeAllDropdownsWhenClickOutside() {
 function closeDropdown(button) {
   button.setAttribute("aria-expanded", "false")
   button.nextElementSibling.removeAttribute("open")
-  button.nextElementSibling.removeAttribute("open")
+  button.nextElementSibling.setAttribute("hidden", true)
 }
