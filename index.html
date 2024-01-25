@@ -12,15 +12,16 @@
 <body class=" bg-neutral-300">
   <header class="bg-neutral-900 p-8">
     <div class="container">
-      <input class="rounded-lg p-4 w-full" type="search" placeholder="Rechercher une recette, un ingrédient, ..."
-        data-recipes-search>
+      <input class="rounded-lg p-4 w-full focus:outline-none focus-visible:ring ring-accent" type="search"
+        placeholder="Rechercher une recette, un ingrédient, ..." data-recipes-search>
     </div>
   </header>
 
   <main class="container p-8 grid gap-8" id="content">
-    <aside class="flex items-center flex-wrap gap-8">
+    <aside class="flex items-center flex-wrap gap-x-8">
       <div class="dropdown | relative min-w-52">
-        <button class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg"
+        <button
+          class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg focus:outline-none focus-visible:ring ring-accent"
           aria-expanded="false">
           <span class="pointer-events-none">Ingrédients</span>
           <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
@@ -30,10 +31,11 @@
         </button>
         <section
           class="dropdown-content | absolute top-full inset-x-0 z-10 w-full max-h-0 open:max-h-60 focus:max-h-60 transition-all overflow-auto"
-          data-recipes-filters="ingredients"></section>
+          data-recipes-filters="ingredients" hidden></section>
       </div>
       <div class="dropdown | relative min-w-52">
-        <button class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg"
+        <button
+          class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg focus:outline-none focus-visible:ring ring-accent"
           aria-expanded="false">
           <span class="pointer-events-none">Appareils</span>
           <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
@@ -43,10 +45,11 @@
         </button>
         <section
           class="dropdown-content | absolute top-full inset-x-0 z-10 w-full max-h-0 open:max-h-60 focus:max-h-60 transition-all overflow-auto"
-          data-recipes-filters="appliances"></section>
+          data-recipes-filters="appliances" hidden></section>
       </div>
       <div class="dropdown | relative min-w-52">
-        <button class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg"
+        <button
+          class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg focus:outline-none focus-visible:ring ring-accent"
           aria-expanded="false">
           <span class="pointer-events-none">Ustensils</span>
           <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
@@ -56,7 +59,7 @@
         </button>
         <section
           class="dropdown-content | absolute top-full inset-x-0 z-10 w-full max-h-0 open:max-h-60 focus:max-h-60 transition-all overflow-auto"
-          data-recipes-filters="utensils"></section>
+          data-recipes-filters="utensils" hidden></section>
       </div>
       <div class="font-display text-xl ms-auto" data-recipes-counter></div>
       <ul class="w-full flex gap-4" data-active-filters></ul>

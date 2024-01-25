@@ -1,6 +1,6 @@
 const ActiveFilter = (filter) => {
   return `
-  <li class="bg-accent flex gap-4 p-4 rounded-lg">
+  <li class="bg-accent flex gap-4 my-2 p-4 rounded-lg">
   <button class="filter__remove | flex gap-4 items-center">
   ${filter} 
       <svg class="pointer-events-none" width="14" height="13" viewBox="0 0 14 13" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

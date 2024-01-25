@@ -1,9 +1,13 @@
+// Utils imports
+import debounce from "../utils/debounce"
+import { toggleDropdown } from "../utils/dropdown"
+
+// Components imports
 import Notice from "../components/Notice"
 import RecipeCard from "../components/RecipeCard"
 import FilterButton from "../components/ActiveFilter"
-import debounce from "../utils/debounce"
-import { toggleDropdown } from "../utils/dropdown"
-import { normalizeString } from "../utils/normalizer"
+import FilterItem from "../components/FilterItem"
+import FilterList from "../components/FilterList"
 
 export default class RecipeView {
   constructor() {
@@ -39,7 +43,7 @@ export default class RecipeView {
     )
   }
 
-  createRecipeCards(recipes) {
+  renderRecipeCards(recipes) {
     return recipes.map((recipe) => RecipeCard(recipe)).join("")
   }
 
@@ -47,7 +51,7 @@ export default class RecipeView {
     this.recipeListElement.innerHTML =
       recipes.length === 0
         ? this.displayNoRecipesMessage()
-        : this.createRecipeCards(recipes)
+        : this.renderRecipeCards(recipes)
   }
 
   // Filter methods
@@ -62,32 +66,27 @@ export default class RecipeView {
     })
   }
 
-  generateFilterItemHTML(filterType, filter) {
-    return `
-        <li class="filter__item">
-          <button
-            class="filter__button"
-            data-filter-type="${filterType}"
-            data-filter="${filter}"
-          >
-            ${filter}
-          </button>
-        </li>
-      `
-  }
-
   generateFilterItemsHTML(filterType, filters) {
-    return filters
-      .map((filter) => this.generateFilterItemHTML(filterType, filter))
-      .join("")
+    return filters.map((filter) => FilterItem(filterType, filter)).join("")
   }
 
-  generateFilterListHTML(filterType, filters) {
-    return `
-        <ul class="filter__list">
-          ${this.generateFilterItemsHTML(filterType, filters)}
-        </ul>
-      `
+  bindFilterSearchInput(handler) {
+    const filterSearchInputs = document.querySelectorAll(".js-filter-list")
+
+    filterSearchInputs.forEach((input) => {
+      const filterResults = document.querySelector(".js-filter-results")
+      const filters = filterResults.querySelectorAll("[data-filter]")
+      input.addEventListener(
+        "input",
+        debounce((event) => {
+          handler(event.target.value, filters)
+        }, 300)
+      )
+    })
+  }
+
+  updateFilterVisibility(filter, shouldHide) {
+    filter.parentNode.classList.toggle("hidden", shouldHide)
   }
 
   bindFilterItemClick(handler) {
@@ -95,7 +94,7 @@ export default class RecipeView {
     filterButtons.forEach((button) => {
       button.addEventListener("click", (event) => {
         const filterType = event.target.dataset.filterType
-        const filter = normalizeString(event.target.dataset.filter)
+        const filter = event.target.dataset.filter
         handler(filterType, filter)
       })
     })
@@ -112,7 +111,8 @@ export default class RecipeView {
         )
       }
       const filterContainer = this.selectFilterContainer(filterType)
-      filterContainer.innerHTML = this.generateFilterListHTML(
+      filterContainer.innerHTML = FilterList(
+        this.generateFilterItemsHTML.bind(this),
         filterType,
         sortedFilters
       )
@@ -123,6 +123,7 @@ export default class RecipeView {
     const activeFiltersElement = document.querySelector("[data-active-filters]")
     const activeFiltersHTML = activeFilters
       .map((filter) => {
+        console.log(filter)
         return FilterButton(filter)
       })
       .join("")

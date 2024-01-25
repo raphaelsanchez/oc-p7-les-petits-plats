@@ -1,3 +1,4 @@
+import { normalizeString } from "../utils/normalizer"
 export default class RecipeController {
   constructor(model, view) {
     this.model = model
@@ -15,6 +16,7 @@ export default class RecipeController {
     this.bindSearchInputEvent()
     this.bindFilterClickEvent()
     this.bindFilterRemoveEvent()
+    this.bindFilterSearchEvent()
   }
 
   bindSearchInputEvent() {
@@ -29,11 +31,30 @@ export default class RecipeController {
     this.view.bindFilterRemoveClick(this.handleFilterRemove.bind(this))
   }
 
+  bindFilterSearchEvent() {
+    this.view.bindFilterSearchInput(this.handleFilterSearch)
+  }
+
   // Event handling methods
   handleUserInput = (inputValue) => {
     const recipes = this.getRecipesBasedOnInput(inputValue)
     this.updateAndDisplayRecipes(recipes)
     this.bindEvents()
+  }
+
+  handleFilterSearch = (inputValue, filters) => {
+    filters.forEach((filter) => {
+      const filterAttribute = filter.getAttribute("data-filter")
+
+      let shouldHide = inputValue.length > 0
+      if (filterAttribute && inputValue.length !== 0) {
+        const normalizedFilter = normalizeString(filterAttribute)
+        const normalizedSearchTerm = normalizeString(inputValue)
+        shouldHide = !normalizedFilter.includes(normalizedSearchTerm)
+      }
+
+      this.view.updateFilterVisibility(filter, shouldHide)
+    })
   }
 
   handleFilterClick = (type, filter) => {

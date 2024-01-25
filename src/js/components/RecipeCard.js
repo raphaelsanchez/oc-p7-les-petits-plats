@@ -7,7 +7,7 @@ const createIngredientList = (ingredients) => {
       ({ ingredient, quantity, unit }) => `
         <li class="flex flex-col">
           <span>${ingredient}</span> 
-          <span class="text-neutral-600">${quantity} ${unit || ""}</span>
+          <span class="text-neutral-600">${quantity || ""} ${unit || ""}</span>
         </li>
       `
     )

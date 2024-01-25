@@ -31,11 +31,10 @@ export default class RecipeModel {
   }
 
   setActiveFilters(filter) {
-    const normalizedFilter = normalizeString(filter)
-    const filterIndex = this.activeFilters.indexOf(normalizedFilter)
+    const filterIndex = this.activeFilters.indexOf(filter)
 
     if (filterIndex === -1) {
-      this.activeFilters.push(normalizedFilter)
+      this.activeFilters.push(filter)
     } else {
       this.activeFilters.splice(filterIndex, 1)
     }
@@ -94,11 +93,13 @@ export default class RecipeModel {
     const isFilterIncludedInRecipe = (recipe, filter) => {
       return (
         recipe.ingredients.some((ingredient) =>
-          normalizeString(ingredient.ingredient).includes(filter)
+          normalizeString(ingredient.ingredient).includes(
+            normalizeString(filter)
+          )
         ) ||
-        normalizeString(recipe.appliance).includes(filter) ||
+        normalizeString(recipe.appliance).includes(normalizeString(filter)) ||
         recipe.ustensils.some((utensil) =>
-          normalizeString(utensil).includes(filter)
+          normalizeString(utensil).includes(normalizeString(filter))
         )
       )
     }

@@ -11,6 +11,7 @@ function toggleButtonState(button) {
     button.getAttribute("aria-expanded") === "true" ? "false" : "true"
   )
   button.nextElementSibling.toggleAttribute("open")
+  button.nextElementSibling.toggleAttribute("hidden")
 }
 
 function closeOtherDropdowns(currentButton) {
@@ -35,5 +36,6 @@ function closeAllDropdownsWhenClickOutside() {
 
 function closeDropdown(button) {
   button.setAttribute("aria-expanded", "false")
+  button.nextElementSibling.removeAttribute("open")
   button.nextElementSibling.removeAttribute("open")
 }

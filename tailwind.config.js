@@ -11,6 +11,7 @@ export default {
       white: "#FFFFFF",
       neutral: {
         300: "#EDEDED",
+        400: "#C6C6C6",
         600: "#6e6e6e",
         900: "#1B1B1B",
       },
