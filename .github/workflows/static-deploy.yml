@@ -48,8 +48,6 @@ jobs:
             ${{ runner.os }}-pnpm-
       - name: Install dependencies
         run: pnpm install
-      - name: Install Vite
-        run: pnpm install -g vite
       - name: Build
         run: pnpm run build
       - name: Setup Pages
