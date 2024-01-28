@@ -48,7 +48,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          BASE_URL: raphaelsanchez.design/oc-p7-les-petits-plats/
+          BASE_URL: https://raphaelsanchez.design/oc-p7-les-petits-plats/
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
@@ -58,4 +58,4 @@ jobs:
           path: "./dist"
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v2
