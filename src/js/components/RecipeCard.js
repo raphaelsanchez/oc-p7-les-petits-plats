@@ -20,7 +20,9 @@ const RecipeCard = (recipe) => {
 
   // Get image optimized for webp
   const imageName = image.split(".")[0]
-  const recipeImage = `/images/${imageName}.400.webp`
+  const baseUrl =
+    process.env.NODE_ENV === "production" ? process.env.BASE_URL : "/"
+  const recipeImage = `${baseUrl}images/${imageName}.400.webp`
 
   // Return the recipe card
   return `
