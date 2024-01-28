@@ -36,6 +36,7 @@ export default class RecipeView {
     this.recipeCounterElement.textContent = `${count} recette${
       count > 1 ? "s" : ""
     }`
+    this.recipeCounterElement.setAttribute("aria-label", `${count} recettes`)
   }
 
   displayNoRecipesMessage() {

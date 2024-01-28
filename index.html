@@ -23,10 +23,12 @@
         délicieuses</h1>
       <div
         class="flex items-stretch gap-2 rounded-lg p-2 w-full bg-white focus:outline-none focus-within:ring ring-accent">
-        <input class="flex-1 px-6 outline-none" type="search" placeholder="Rechercher une recette, un ingrédient, ..."
-          data-recipes-search>
+        <label class="sr-only" for="recipes-search">Rechercher une recette</label>
+        <input class="flex-1 px-6 outline-none" type="search" id="recipes-search"
+          placeholder="Rechercher une recette, un ingrédient, ..." data-recipes-search>
         <button
-          class="w-14 h-14 rounded-lg bg-neutral-900 text-white hover:bg-accent hover:text-neutral-900 focus-visible:bg-accent transition outline-none">
+          class="w-14 h-14 rounded-lg bg-neutral-900 text-white hover:bg-accent hover:text-neutral-900 focus-visible:bg-accent transition outline-none"
+          aria-label="Lancer la recherche">
           <svg class="m-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="9.5" stroke="currentColor" />
             <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="currentColor" />
@@ -43,10 +45,10 @@
         <div class="dropdown | relative min-w-52">
           <button
             class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg focus:outline-none focus-visible:ring ring-accent"
-            aria-expanded="false">
-            <span class="pointer-events-none">Ingrédients</span>
+            aria-expanded="false" aria-label="Filtrer les recettes par ingrédients">
+            <span class="pointer-events-none" aria-hidden="true">Ingrédients</span>
             <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round" />
             </svg>
           </button>
@@ -57,10 +59,10 @@
         <div class="dropdown | relative min-w-52">
           <button
             class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg focus:outline-none focus-visible:ring ring-accent"
-            aria-expanded="false">
-            <span class="pointer-events-none">Appareils</span>
+            aria-expanded="false" aria-label="Filtrer les recettes par appareils">
+            <span class="pointer-events-none" aria-hidden="true">Appareils</span>
             <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round" />
             </svg>
           </button>
@@ -71,10 +73,10 @@
         <div class="dropdown | relative min-w-52">
           <button
             class="dropdown-button p-4 w-full flex justify-between items-center bg-white rounded-lg focus:outline-none focus-visible:ring ring-accent"
-            aria-expanded="false">
-            <span class="pointer-events-none">Ustensils</span>
+            aria-expanded="false" aria-label="Filtrer les recettes ustensils">
+            <span class="pointer-events-none" aria-hidden="true">Ustensils</span>
             <svg class="pointer-events-none" width="15" height="8" viewBox="0 0 15 8" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M1 1L7.5 7L14 1" stroke="#1B1B1B" stroke-linecap="round" />
             </svg>
           </button>
@@ -82,14 +84,15 @@
             class="dropdown-content | absolute top-full inset-x-0 z-10 w-full max-h-0 open:max-h-60 focus:max-h-60 transition-all overflow-auto"
             data-recipes-filters="utensils" hidden></section>
         </div>
-        <div class="font-display text-xl ms-auto" data-recipes-counter></div>
+        <div class="font-display text-xl ms-auto" data-recipes-counter tabindex="0"></div>
         <ul class="w-full flex gap-4" data-active-filters></ul>
       </div>
     </aside>
-    <section class="container grid md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16" data-recipes-list></section>
+    <section class="container grid md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16" data-recipes-list
+      aria-label="Résultat de recherche"></section>
   </main>
 
-  <footer class="p-8 text-center text-neutral-600">
+  <footer class="p-8 text-center text-neutral-900">
     <p>© 2023 Les Petits Plats, OpenClassrooms project — Tous droits réservés.</p>
   </footer>
   <!-- Load main script -->
