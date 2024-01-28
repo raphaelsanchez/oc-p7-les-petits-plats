@@ -45,6 +45,8 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
+      - name: Install Vite
+        run: npm install -g vite
       - name: Install dependencies
         run: pnpm install
       - name: Build
