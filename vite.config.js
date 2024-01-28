@@ -2,6 +2,6 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: process.env.BASE_URL || '/',
-  // other config options...
+  base: process.env.NODE_ENV === 'production' ? '/oc-p7-les-petits-plats/' : '/',
+  // autres options de configuration...
 })

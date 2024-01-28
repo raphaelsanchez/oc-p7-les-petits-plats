@@ -20,8 +20,9 @@ const RecipeCard = (recipe) => {
 
   // Get image optimized for webp
   const imageName = image.split(".")[0]
-  const baseUrl = new URL(process.env.BASE_URL || "/")
-  const recipeImage = new URL(`images/${imageName}.400.webp`, baseUrl).href
+  const baseUrl =
+    process.env.NODE_ENV === "production" ? "/oc-p7-les-petits-plats/" : "/"
+  const recipeImage = `${baseUrl}images/${imageName}.400.webp`
 
   // Return the recipe card
   return `
