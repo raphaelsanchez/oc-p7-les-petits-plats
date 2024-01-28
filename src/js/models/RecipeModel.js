@@ -123,6 +123,14 @@ export default class RecipeModel {
       recipe.ustensils.forEach((utensil) => filters.utensils.add(utensil))
     })
 
+    // exlude active filters from filters
+    const activeFilters = this.getActiveFilters()
+    Object.keys(filters).forEach((filterType) => {
+      filters[filterType] = [...filters[filterType]].filter(
+        (filter) => !activeFilters.includes(filter)
+      )
+    })
+
     return filters
   }
 }
