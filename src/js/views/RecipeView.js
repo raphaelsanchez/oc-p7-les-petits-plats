@@ -33,7 +33,9 @@ export default class RecipeView {
 
   // Recipe display methods
   displayRecipeCount(count) {
-    this.recipeCounterElement.textContent = `${count} recette${count > 1 ? "s" : ""}`
+    this.recipeCounterElement.textContent = `${count} recette${
+      count > 1 ? "s" : ""
+    }`
   }
 
   displayNoRecipesMessage() {
@@ -52,6 +54,24 @@ export default class RecipeView {
       recipes.length === 0
         ? this.displayNoRecipesMessage()
         : this.renderRecipeCards(recipes)
+    this.lazyLoadImages()
+  }
+
+  // Lazy loading methods
+  lazyLoadImages() {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target
+          img.src = img.dataset.src
+          observer.unobserve(img)
+        }
+      })
+    })
+
+    document.querySelectorAll("img[data-src]").forEach((img) => {
+      observer.observe(img)
+    })
   }
 
   // Filter methods

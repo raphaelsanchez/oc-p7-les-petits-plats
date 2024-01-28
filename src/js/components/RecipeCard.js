@@ -14,20 +14,24 @@ const createIngredientList = (ingredients) => {
     .join("")
 }
 
-const RecipeCard = (recipe) => {
-  // Destructure recipe object
-  const { id, name, description, image, time, ingredients } = recipe
-
-  // Get image optimized for webp
+// Render the recipe image
+const renderImage = (image) => {
   const imageName = image.split(".")[0]
   const baseUrl =
     process.env.NODE_ENV === "production" ? "/oc-p7-les-petits-plats/" : "/"
   const recipeImage = `${baseUrl}images/${imageName}.400.webp`
 
+  return `<img class="w-full aspect-[380/250] object-cover" data-src="${recipeImage}" src="" alt="Image de recette" />`
+}
+
+const RecipeCard = (recipe) => {
+  // Destructure recipe object
+  const { id, name, description, image, time, ingredients } = recipe
+
   // Return the recipe card
   return `
     <article class="bg-white rounded-lg shadow-xl overflow-hidden relative outline-none focus-visible:ring ring-accent" id="recipe-${id}" tabindex="0">
-      <img class="w-full aspect-[380/250] object-cover" src="${recipeImage}" alt="Photo d'une recette de ${name}" loading="lazy" />
+      ${renderImage(image)}
       <div class="px-4 py-8">
         <h3 class="font-display text-xl">${name}</h3>
         <p class="absolute top-4 right-4 bg-accent py-2 px-4 rounded-full text-sm">${time} min</p>
