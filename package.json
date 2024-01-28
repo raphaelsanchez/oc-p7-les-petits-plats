@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pnpx vite",
-    "build": "pnpx vite build",
-    "preview": "pnpx vite preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",

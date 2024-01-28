@@ -20,9 +20,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-env:
-  NODE_ENV: production
-
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -51,7 +48,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          BASE_URL: /home/runner/work/oc-p7-les-petits-plats/
+          BASE_URL: /${{ github.repository }}/
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
