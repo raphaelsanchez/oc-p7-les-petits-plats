@@ -8,9 +8,11 @@
 
 Projet fictif réalisé dans le cadre du programme de formation **Développeur Front-end JavaScript React** chez [OpenClassrooms](https://openclassrooms.com)
 
-![Static Badge](https://img.shields.io/badge/show-live-version?style=for-the-badge&logo=googlechrome&logoColor=%23111&label=Consulter%20la%20version%20en%20ligne&labelColor=%23FFD15B&color=%2300a400&link=https%3A%2F%2Fraphaelsanchez.design%2Foc-p7-les-petits-plats%2F)
-
 ![screenshot](https://github.com/raphaelsanchez/oc-p7-les-petits-plats/assets/6806913/1756bce9-0b49-4638-9876-f9dbc43e8d05)
+
+## Hébergement
+
+La version live de ce projet est hébergé sur [Github Pages](https://raphaelsanchez.github.io/oc-p7-les-petits-plats/)
 
 ## Context du projet
 
