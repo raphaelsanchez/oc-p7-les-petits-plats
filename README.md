@@ -6,9 +6,9 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/raphaelsanchez/oc-p7-les-petits-plats)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/raphaelsanchez/oc-p7-les-petits-plats/static-deploy.yml)
 
-![Screenshot](https://raphaelsanchez.design/oc-p7-les-petits-plats/screenshot.png)
+Projet fictif réalisé dans le cadre du programme de formation **Développeur Front-end JavaScript React** chez [OpenClassrooms](https://openclassrooms.com)
 
-Projet réalisé dans le cadre du programme de formation Développeur Front-end JavaScript React chez [OpenClassrooms](https://openclassrooms.com)
+![screenshot](https://github.com/raphaelsanchez/oc-p7-les-petits-plats/assets/6806913/1756bce9-0b49-4638-9876-f9dbc43e8d05)
 
 ## Context du projet
 
