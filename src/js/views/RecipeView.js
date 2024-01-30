@@ -1,6 +1,7 @@
 // Utils imports
 import debounce from "../utils/debounce"
 import { toggleDropdown } from "../utils/dropdown"
+import { lazyLoadImages } from "../utils/lazyload"
 
 // Components imports
 import Notice from "../components/Notice"
@@ -55,24 +56,7 @@ export default class RecipeView {
       recipes.length === 0
         ? this.displayNoRecipesMessage()
         : this.renderRecipeCards(recipes)
-    this.lazyLoadImages()
-  }
-
-  // Lazy loading methods
-  lazyLoadImages() {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target
-          img.src = img.dataset.src
-          observer.unobserve(img)
-        }
-      })
-    })
-
-    document.querySelectorAll("img[data-src]").forEach((img) => {
-      observer.observe(img)
-    })
+    lazyLoadImages()
   }
 
   // Filter methods
