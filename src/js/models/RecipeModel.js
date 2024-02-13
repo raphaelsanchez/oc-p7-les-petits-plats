@@ -6,11 +6,16 @@ export default class RecipeModel {
       throw new TypeError("Expected recipeData to be an array")
     }
     this.allRecipes = recipeData
-    this.filteredRecipes = []
+    this.filteredRecipes = [...this.allRecipes]
     this.activeFilters = []
+    this.currentSearchInput = ""
   }
 
   // Getter methods
+  getRecipes() {
+    return this.filteredRecipes
+  }
+
   getAllRecipes() {
     return this.allRecipes
   }
@@ -23,11 +28,19 @@ export default class RecipeModel {
     return this.activeFilters
   }
 
+  getSearchInput() {
+    return this.currentSearchInput
+  }
+
   // Setter methods
   setFilteredRecipes(recipes) {
-    this.filteredRecipes = this.allRecipes.filter((recipe) => {
-      return this.isRecipeMatchingActiveFilters(recipe, filters)
+    this.filteredRecipes = recipes.filter((recipe) => {
+      return this.isRecipeMatchingActiveFilters(recipe, this.getActiveFilters())
     })
+  }
+
+  setSearchInput(searchInput) {
+    this.currentSearchInput = searchInput
   }
 
   setActiveFilters(filter) {
@@ -55,9 +68,28 @@ export default class RecipeModel {
   // Search methods
   findRecipesBySearchTerm(searchTerm) {
     const normalizedSearchTerms = normalizeString(searchTerm).split(" ")
-    return this.allRecipes.filter((recipe) =>
+    return this.filteredRecipes.filter((recipe) =>
       this.isRecipeMatchingSearchTerms(recipe, normalizedSearchTerms)
     )
+  }
+
+  // Filter methods
+  findRecipesByActiveFilters() {
+    return this.filteredRecipes.filter((recipe) =>
+      this.isRecipeMatchingActiveFilters(recipe, this.activeFilters)
+    )
+  }
+
+  findRecipesBySearchTermAndFilters(searchTerm, filters) {
+    searchTerm = searchTerm || ""
+    const normalizedSearchTerms = normalizeString(searchTerm).split(" ")
+    const recipes = this.allRecipes.filter(
+      (recipe) =>
+        this.isRecipeMatchingSearchTerms(recipe, normalizedSearchTerms) &&
+        this.isRecipeMatchingActiveFilters(recipe, filters)
+    )
+
+    return recipes
   }
 
   isRecipeMatchingSearchTerms(recipe, searchTerms) {
@@ -80,13 +112,6 @@ export default class RecipeModel {
     }
 
     return searchTerms.every((term) => isTermIncludedInRecipe(recipe, term))
-  }
-
-  // Filter methods
-  findRecipesByActiveFilters() {
-    return this.allRecipes.filter((recipe) =>
-      this.isRecipeMatchingActiveFilters(recipe, this.activeFilters)
-    )
   }
 
   isRecipeMatchingActiveFilters(recipe, filter) {

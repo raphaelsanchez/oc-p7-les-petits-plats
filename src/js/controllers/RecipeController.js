@@ -13,31 +13,31 @@ export default class RecipeController {
 
   // Event binding methods
   bindEvents() {
-    this.bindSearchInputEvent()
-    this.bindFilterClickEvent()
-    this.bindFilterRemoveEvent()
-    this.bindFilterSearchEvent()
-  }
-
-  bindSearchInputEvent() {
     this.view.bindSearchInput(this.handleUserInput)
-  }
-
-  bindFilterClickEvent() {
     this.view.bindFilterItemClick(this.handleFilterClick)
-  }
-
-  bindFilterRemoveEvent() {
     this.view.bindFilterRemoveClick(this.handleFilterRemove.bind(this))
-  }
-
-  bindFilterSearchEvent() {
     this.view.bindFilterSearchInput(this.handleFilterSearch)
   }
 
   // Event handling methods
   handleUserInput = (inputValue) => {
-    const recipes = this.getRecipesBasedOnInput(inputValue)
+    let recipes
+    const activeFilters = this.model.getActiveFilters()
+
+    if (inputValue.trim().length === 0) {
+      recipes =
+        activeFilters.length > 0
+          ? this.model.findRecipesByActiveFilters()
+          : this.model.getAllRecipes()
+    } else {
+      recipes = this.model.findRecipesBySearchTermAndFilters(
+        inputValue,
+        activeFilters
+      )
+    }
+
+    this.model.setFilteredRecipes(recipes)
+    this.model.setSearchInput(inputValue)
     this.updateAndDisplayRecipes(recipes)
     this.bindEvents()
   }
@@ -59,13 +59,20 @@ export default class RecipeController {
 
   handleFilterClick = (type, filter) => {
     this.model.setActiveFilters(filter)
+    this.model.setFilteredRecipes(this.model.getRecipes())
     const recipes = this.getRecipesBasedOnFilter(type, filter)
     this.updateDisplayAndBindEvents(recipes)
   }
 
-  handleFilterRemove(filter) {
+  handleFilterRemove = (filter) => {
     this.model.removeActiveFilter(filter)
-    const recipes = this.getRecipesBasedOnFilter()
+    const searchTerm = this.model.getSearchInput() || ""
+    const activeFilters = this.model.getActiveFilters()
+    const recipes = this.model.findRecipesBySearchTermAndFilters(
+      searchTerm,
+      activeFilters
+    )
+    this.model.setFilteredRecipes(recipes)
     this.updateDisplayAndBindEvents(recipes)
   }
 
@@ -73,13 +80,13 @@ export default class RecipeController {
   getRecipesBasedOnInput(inputValue) {
     return inputValue.length >= 3
       ? this.model.findRecipesBySearchTerm(inputValue)
-      : this.model.getAllRecipes()
+      : this.model.getRecipes()
   }
 
   getRecipesBasedOnFilter() {
     return this.model.getActiveFilters().length > 0
       ? this.model.findRecipesByActiveFilters()
-      : this.model.getAllRecipes()
+      : this.model.getRecipes()
   }
 
   // Display methods
@@ -91,7 +98,7 @@ export default class RecipeController {
   }
 
   displayAllRecipes() {
-    const allRecipes = this.model.getAllRecipes()
+    const allRecipes = this.model.getRecipes()
     const allFilters = this.model.findFiltersByRecipes(allRecipes)
     this.view.displayRecipes(allRecipes)
     this.view.displayFilters(allFilters)

@@ -1,7 +1,7 @@
 // Normalize string
 export const normalizeString = (str) => {
   if (!str) {
-    throw new Error("Cannot normalize undefined or null string")
+    return ""
   }
   return str
     .normalize("NFD")
