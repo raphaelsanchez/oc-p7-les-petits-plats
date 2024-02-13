@@ -1,6 +1,11 @@
 const RECIPE_TEXT = "Recette"
 const INGREDIENT_TEXT = "Ingrédient"
 
+/**
+ * Creates a list of ingredients.
+ * @param {Array} ingredients - The ingredients to include in the list.
+ * @returns {string} The HTML string of the ingredient list.
+ */
 const createIngredientList = (ingredients) => {
   return ingredients
     .map(
@@ -14,16 +19,26 @@ const createIngredientList = (ingredients) => {
     .join("")
 }
 
-// Render the recipe image
+/**
+ * Renders the image for a recipe.
+ * @param {string} image - The image file name.
+ * @param {string} alt - The alt text for the image.
+ * @returns {string} The HTML string of the image.
+ */
 const renderImage = (image, alt) => {
   const imageName = image.split(".")[0]
   const baseUrl =
     process.env.NODE_ENV === "production" ? "/oc-p7-les-petits-plats/" : "/"
   const recipeImage = `${baseUrl}images/${imageName}.400.webp`
 
-  return `<img class="w-full aspect-[380/250] object-cover" data-src="${recipeImage}" src="" alt="Image de la recette ${alt}" />`
+  return `<img class="w-full aspect-[380/250] object-cover" src="${recipeImage}" alt="Image de la recette ${alt}" loading="lazy" />`
 }
 
+/**
+ * Creates a recipe card.
+ * @param {Object} recipe - The recipe data.
+ * @returns {string} The HTML string of the recipe card.
+ */
 const RecipeCard = (recipe) => {
   // Destructure recipe object
   const { id, name, description, image, time, ingredients } = recipe

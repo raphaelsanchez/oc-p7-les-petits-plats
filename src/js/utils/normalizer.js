@@ -1,7 +1,11 @@
-// Normalize string
+/**
+ * Normalizes a string by removing diacritics, non-alphanumeric characters, and converting to lower case.
+ * @param {string} str - The string to normalize.
+ * @returns {string} The normalized string.
+ */
 export const normalizeString = (str) => {
   if (!str) {
-    throw new Error("Cannot normalize undefined or null string")
+    return ""
   }
   return str
     .normalize("NFD")
@@ -10,7 +14,11 @@ export const normalizeString = (str) => {
     .toLowerCase()
 }
 
-// Sluggify string
+/**
+ * Converts a string into a slug by removing diacritics, non-alphanumeric characters, converting to lower case, and replacing spaces with hyphens.
+ * @param {string} str - The string to convert into a slug.
+ * @returns {string} The slugified string.
+ */
 export const sluggifyString = (str) => {
   return str
     .normalize("NFD")

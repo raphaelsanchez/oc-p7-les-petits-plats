@@ -1,3 +1,8 @@
+/**
+ * Creates an active filter item.
+ * @param {string} filter - The active filter.
+ * @returns {string} The HTML string of the active filter item.
+ */
 const ActiveFilter = (filter) => {
   return `
   <li class="bg-accent flex gap-4 my-2 p-4 rounded-lg">

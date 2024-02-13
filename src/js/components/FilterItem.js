@@ -1,3 +1,9 @@
+/**
+ * Creates a filter item.
+ * @param {string} filterType - The type of the filter.
+ * @param {string} filter - The filter.
+ * @returns {string} The HTML string of the filter item.
+ */
 const FilterItem = (filterType, filter) => {
   return `
     <li class="filter__item">
