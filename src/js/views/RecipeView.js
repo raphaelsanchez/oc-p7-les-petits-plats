@@ -1,7 +1,6 @@
 // Utils imports
 import debounce from "../utils/debounce"
 import { toggleDropdown } from "../utils/dropdown"
-import { lazyLoadImages } from "../utils/lazyload"
 
 // Components imports
 import Notice from "../components/Notice"
@@ -81,7 +80,7 @@ export default class RecipeView {
       recipes.length === 0
         ? this.displayNoRecipesMessage()
         : this.renderRecipeCards(recipes)
-    lazyLoadImages()
+    // lazyLoadImages()
   }
 
   /**

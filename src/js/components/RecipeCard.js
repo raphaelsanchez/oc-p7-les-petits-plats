@@ -31,7 +31,7 @@ const renderImage = (image, alt) => {
     process.env.NODE_ENV === "production" ? "/oc-p7-les-petits-plats/" : "/"
   const recipeImage = `${baseUrl}images/${imageName}.400.webp`
 
-  return `<img class="w-full aspect-[380/250] object-cover" data-src="${recipeImage}" src="" alt="Image de la recette ${alt}" />`
+  return `<img class="w-full aspect-[380/250] object-cover" src="${recipeImage}" alt="Image de la recette ${alt}" loading="lazy" />`
 }
 
 /**

@@ -11,6 +11,7 @@ export default class RecipeController {
   constructor(model, view) {
     this.model = model
     this.view = view
+    this.view.bindSearchInput(this.handleUserInput)
   }
 
   /**
@@ -25,7 +26,6 @@ export default class RecipeController {
    * Binds events to the view.
    */
   bindEvents() {
-    this.view.bindSearchInput(this.handleUserInput)
     this.view.bindFilterItemClick(this.handleFilterClick)
     this.view.bindFilterRemoveClick(this.handleFilterRemove.bind(this))
     this.view.bindFilterSearchInput(this.handleFilterSearch)
