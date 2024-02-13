@@ -1,17 +1,29 @@
 import { normalizeString } from "../utils/normalizer"
+
+/**
+ * Controller for the Recipe application.
+ */
 export default class RecipeController {
+  /**
+   * @param {Object} model - The model of the application.
+   * @param {Object} view - The view of the application.
+   */
   constructor(model, view) {
     this.model = model
     this.view = view
   }
 
-  // Initialization methods
+  /**
+   * Initializes the controller.
+   */
   initialize() {
     this.displayAllRecipes()
     this.bindEvents()
   }
 
-  // Event binding methods
+  /**
+   * Binds events to the view.
+   */
   bindEvents() {
     this.view.bindSearchInput(this.handleUserInput)
     this.view.bindFilterItemClick(this.handleFilterClick)
@@ -19,7 +31,10 @@ export default class RecipeController {
     this.view.bindFilterSearchInput(this.handleFilterSearch)
   }
 
-  // Event handling methods
+  /**
+   * Handles user input.
+   * @param {string} inputValue - The user input.
+   */
   handleUserInput = (inputValue) => {
     let recipes
     const activeFilters = this.model.getActiveFilters()
@@ -42,6 +57,11 @@ export default class RecipeController {
     this.bindEvents()
   }
 
+  /**
+   * Handles filter search.
+   * @param {string} inputValue - The user input.
+   * @param {Array} filters - The filters.
+   */
   handleFilterSearch = (inputValue, filters) => {
     filters.forEach((filter) => {
       const filterAttribute = filter.getAttribute("data-filter")
@@ -57,6 +77,11 @@ export default class RecipeController {
     })
   }
 
+  /**
+   * Handles filter click.
+   * @param {string} type - The type of the filter.
+   * @param {string} filter - The filter.
+   */
   handleFilterClick = (type, filter) => {
     this.model.setActiveFilters(filter)
     this.model.setFilteredRecipes(this.model.getRecipes())
@@ -64,6 +89,10 @@ export default class RecipeController {
     this.updateDisplayAndBindEvents(recipes)
   }
 
+  /**
+   * Handles filter removal.
+   * @param {string} filter - The filter to remove.
+   */
   handleFilterRemove = (filter) => {
     this.model.removeActiveFilter(filter)
     const searchTerm = this.model.getSearchInput() || ""
@@ -76,20 +105,31 @@ export default class RecipeController {
     this.updateDisplayAndBindEvents(recipes)
   }
 
-  // Recipe retrieval methods
+  /**
+   * Retrieves recipes based on user input.
+   * @param {string} inputValue - The user input.
+   * @returns {Array} The matching recipes.
+   */
   getRecipesBasedOnInput(inputValue) {
     return inputValue.length >= 3
       ? this.model.findRecipesBySearchTerm(inputValue)
       : this.model.getRecipes()
   }
 
+  /**
+   * Retrieves recipes based on active filters.
+   * @returns {Array} The matching recipes.
+   */
   getRecipesBasedOnFilter() {
     return this.model.getActiveFilters().length > 0
       ? this.model.findRecipesByActiveFilters()
       : this.model.getRecipes()
   }
 
-  // Display methods
+  /**
+   * Updates and displays recipes.
+   * @param {Array} recipes - The recipes to display.
+   */
   updateAndDisplayRecipes(recipes) {
     const filters = this.model.findFiltersByRecipes(recipes)
     this.view.displayRecipes(recipes)
@@ -97,6 +137,9 @@ export default class RecipeController {
     this.view.displayRecipeCount(recipes.length)
   }
 
+  /**
+   * Displays all recipes.
+   */
   displayAllRecipes() {
     const allRecipes = this.model.getRecipes()
     const allFilters = this.model.findFiltersByRecipes(allRecipes)
@@ -105,12 +148,18 @@ export default class RecipeController {
     this.view.displayRecipeCount(allRecipes.length)
   }
 
+  /**
+   * Displays active filters.
+   */
   displayActiveFilters() {
     const activeFilters = this.model.getActiveFilters()
     this.view.displayActiveFilters(activeFilters)
   }
 
-  // Update methods
+  /**
+   * Updates the display and binds events.
+   * @param {Array} recipes - The recipes to display.
+   */
   updateDisplayAndBindEvents(recipes) {
     this.updateAndDisplayRecipes(recipes)
     this.displayActiveFilters()

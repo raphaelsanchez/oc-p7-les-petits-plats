@@ -10,9 +10,15 @@ import FilterButton from "../components/ActiveFilter"
 import FilterItem from "../components/FilterItem"
 import FilterList from "../components/FilterList"
 
+/**
+ * Updates the display and binds events.
+ * @param {Array} recipes - The recipes to display.
+ */
 export default class RecipeView {
   constructor() {
-    // Initialize DOM elements
+    /**
+     * Initializes the view by selecting DOM elements and adding dropdown toggle handler.
+     */
     this.recipeListElement = document.querySelector("[data-recipes-list]")
     this.recipeCounterElement = document.querySelector("[data-recipes-counter]")
     this.recipeSearchInputElement = document.querySelector(
@@ -22,7 +28,10 @@ export default class RecipeView {
     this.addDropdownToggleHandler()
   }
 
-  // Search methods
+  /**
+   * Binds the search input to a handler.
+   * @param {Function} handler - The function to call when the search input changes.
+   */
   bindSearchInput(handler) {
     this.recipeSearchInputElement.addEventListener(
       "input",
@@ -32,7 +41,10 @@ export default class RecipeView {
     )
   }
 
-  // Recipe display methods
+  /**
+   * Displays the count of recipes.
+   * @param {number} count - The number of recipes.
+   */
   displayRecipeCount(count) {
     this.recipeCounterElement.textContent = `${count} recette${
       count > 1 ? "s" : ""
@@ -40,6 +52,10 @@ export default class RecipeView {
     this.recipeCounterElement.setAttribute("aria-label", `${count} recettes`)
   }
 
+  /**
+   * Displays a message when no recipes are found.
+   * @returns {string} The HTML string of the notice.
+   */
   displayNoRecipesMessage() {
     return Notice(
       "info",
@@ -47,10 +63,19 @@ export default class RecipeView {
     )
   }
 
+  /**
+   * Renders the recipe cards.
+   * @param {Array} recipes - The recipes to render.
+   * @returns {string} The HTML string of the recipe cards.
+   */
   renderRecipeCards(recipes) {
     return recipes.map((recipe) => RecipeCard(recipe)).join("")
   }
 
+  /**
+   * Displays the recipes.
+   * @param {Array} recipes - The recipes to display.
+   */
   displayRecipes(recipes) {
     this.recipeListElement.innerHTML =
       recipes.length === 0
@@ -59,11 +84,18 @@ export default class RecipeView {
     lazyLoadImages()
   }
 
-  // Filter methods
+  /**
+   * Selects the filter container for a given filter type.
+   * @param {string} filterType - The type of the filter.
+   * @returns {Element} The filter container element.
+   */
   selectFilterContainer(filterType) {
     return document.querySelector(`[data-recipes-filters="${filterType}"]`)
   }
 
+  /**
+   * Adds a handler to toggle the dropdown.
+   */
   addDropdownToggleHandler() {
     const dropdownButtons = document.querySelectorAll(".dropdown-button")
     dropdownButtons.forEach((button) => {
@@ -71,10 +103,20 @@ export default class RecipeView {
     })
   }
 
+  /**
+   * Generates the HTML for the filter items.
+   * @param {string} filterType - The type of the filter.
+   * @param {Array} filters - The filters.
+   * @returns {string} The HTML string of the filter items.
+   */
   generateFilterItemsHTML(filterType, filters) {
     return filters.map((filter) => FilterItem(filterType, filter)).join("")
   }
 
+  /**
+   * Binds the filter search input to a handler.
+   * @param {Function} handler - The function to call when the filter search input changes.
+   */
   bindFilterSearchInput(handler) {
     const filterSearchInputs = document.querySelectorAll(".js-filter-list")
 
@@ -90,10 +132,19 @@ export default class RecipeView {
     })
   }
 
+  /**
+   * Updates the visibility of a filter.
+   * @param {Element} filter - The filter element.
+   * @param {boolean} shouldHide - Whether the filter should be hidden.
+   */
   updateFilterVisibility(filter, shouldHide) {
     filter.parentNode.classList.toggle("hidden", shouldHide)
   }
 
+  /**
+   * Binds the filter item click to a handler.
+   * @param {Function} handler - The function to call when a filter item is clicked.
+   */
   bindFilterItemClick(handler) {
     const filterButtons = document.querySelectorAll(".filter__button")
     filterButtons.forEach((button) => {
@@ -105,6 +156,11 @@ export default class RecipeView {
     })
   }
 
+  /**
+   * Displays the filters.
+   * @param {Object} filters - The filters to display.
+   * @param {Object} activeFilters - The active filters.
+   */
   displayFilters(filters, activeFilters) {
     const filterTypes = ["ingredients", "appliances", "utensils"]
 
@@ -124,6 +180,10 @@ export default class RecipeView {
     })
   }
 
+  /**
+   * Displays the active filters.
+   * @param {Array} activeFilters - The active filters.
+   */
   displayActiveFilters(activeFilters) {
     const activeFiltersElement = document.querySelector("[data-active-filters]")
     const activeFiltersHTML = activeFilters
@@ -136,6 +196,10 @@ export default class RecipeView {
     activeFiltersElement.innerHTML = activeFiltersHTML
   }
 
+  /**
+   * Binds the filter remove click to a handler.
+   * @param {Function} handler - The function to call when a filter remove button is clicked.
+   */
   bindFilterRemoveClick(handler) {
     const activeFilterRemoveButtons =
       document.querySelectorAll(".filter__remove")

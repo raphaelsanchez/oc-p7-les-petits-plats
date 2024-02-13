@@ -1,3 +1,9 @@
+/**
+ * Creates a notice message of a given type.
+ * @param {string} type - The type of the notice. Can be "info", "error", "warning", or "success".
+ * @param {string} msg - The message to display in the notice.
+ * @returns {string} The HTML string of the notice.
+ */
 const Notice = (type, msg) => {
   const noticeType = {
     info: "bg-neutral-300 text-neutral-900",

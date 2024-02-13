@@ -1,3 +1,10 @@
+/**
+ * Creates a filter list.
+ * @param {Function} generateFilterItemsHTML - The function to generate the HTML for the filter items.
+ * @param {string} filterType - The type of the filter.
+ * @param {Array} filters - The filters to include in the list.
+ * @returns {string} The HTML string of the filter list.
+ */
 const FilterList = (generateFilterItemsHTML, filterType, filters) => {
   return `
     <ul class="filter__list">
