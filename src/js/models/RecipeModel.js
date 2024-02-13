@@ -14,6 +14,11 @@ export default class RecipeModel {
     }
     this.allRecipes = recipeData
     this.filteredRecipes = [...this.allRecipes]
+    this.filters = {
+      ingredients: new Set(),
+      appliances: new Set(),
+      utensils: new Set(),
+    }
     this.activeFilters = []
     this.currentSearchInput = ""
   }
@@ -63,6 +68,7 @@ export default class RecipeModel {
    * @param {Array} recipes - The recipes to set as the filtered recipes.
    */
   setFilteredRecipes(recipes) {
+    recipes = recipes || []
     this.filteredRecipes = recipes.filter((recipe) => {
       return this.isRecipeMatchingActiveFilters(recipe, this.getActiveFilters())
     })
@@ -204,7 +210,9 @@ export default class RecipeModel {
    * @returns {Object} The filters that match the recipes.
    */
   findFiltersByRecipes(recipes) {
-    const filters = {
+    recipes = recipes || []
+
+    let filters = {
       ingredients: new Set(),
       appliances: new Set(),
       utensils: new Set(),

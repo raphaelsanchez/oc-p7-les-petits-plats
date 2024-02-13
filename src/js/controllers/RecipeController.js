@@ -36,19 +36,20 @@ export default class RecipeController {
    * @param {string} inputValue - The user input.
    */
   handleUserInput = (inputValue) => {
-    let recipes
     const activeFilters = this.model.getActiveFilters()
+    let recipes
 
-    if (inputValue.trim().length === 0) {
-      recipes =
-        activeFilters.length > 0
-          ? this.model.findRecipesByActiveFilters()
-          : this.model.getAllRecipes()
-    } else {
+    if (inputValue.trim().length >= 3) {
       recipes = this.model.findRecipesBySearchTermAndFilters(
         inputValue,
         activeFilters
       )
+    } else {
+      this.model.filteredRecipes = this.model.allRecipes
+      recipes =
+        activeFilters.length > 0
+          ? this.model.findRecipesByActiveFilters()
+          : this.model.getAllRecipes()
     }
 
     this.model.setFilteredRecipes(recipes)
@@ -131,6 +132,7 @@ export default class RecipeController {
    * @param {Array} recipes - The recipes to display.
    */
   updateAndDisplayRecipes(recipes) {
+    recipes = recipes || []
     const filters = this.model.findFiltersByRecipes(recipes)
     this.view.displayRecipes(recipes)
     this.view.displayFilters(filters)

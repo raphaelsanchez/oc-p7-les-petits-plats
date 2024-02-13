@@ -76,6 +76,7 @@ export default class RecipeView {
    * @param {Array} recipes - The recipes to display.
    */
   displayRecipes(recipes) {
+    recipes = recipes || []
     this.recipeListElement.innerHTML =
       recipes.length === 0
         ? this.displayNoRecipesMessage()
