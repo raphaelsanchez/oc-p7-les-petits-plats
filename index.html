@@ -7,14 +7,16 @@
   <meta name="description" content="Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses.">
   <title>Les Petits Plats</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="prefetch" href="/src/images/logo.svg">
+  <link rel="prefetch" href="/src/images/hero-background.webp">
 </head>
 
 <body class=" bg-neutral-300">
-  <header
-    class="bg-neutral-900 p-8 min-h-[50dvh] grid content-center relative bg-hero-background bg-no-repeat bg-center bg-cover">
+  <header class="bg-neutral-900 p-8 min-h-[50dvh] grid content-center relative isolate">
     <div class="container max-w-5xl grid gap-8">
-      <img class="absolute top-14 left-16" src="/src/images/logo.svg" alt="Logo Les Petits Plats">
-      <h1 class="font-black font-display text-accent uppercase text-5xl leading-tight text-balance text-center"
+      <img class="absolute top-14 left-16" src="/src/images/logo.svg" alt="Logo Les Petits Plats" loading="lazy">
+      <h1
+        class="font-black font-display text-accent uppercase text-5xl leading-tight text-balance text-center rounded-lg focus-visible:ring-4 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:ring-inset transition-all outline-none"
         tabindex="0">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
       <div
         class="flex items-stretch gap-2 rounded-lg p-2 w-full bg-white focus:outline-none focus-within:ring ring-accent">
@@ -32,6 +34,7 @@
 
       </div>
     </div>
+    <img class="absolute inset-0 -z-10 size-full object-cover" src="/src/images/hero-background.webp" alt="">
   </header>
 
   <main class="grid gap-6" id="content">
