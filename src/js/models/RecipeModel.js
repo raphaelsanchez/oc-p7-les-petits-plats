@@ -164,20 +164,38 @@ export default class RecipeModel {
     }
 
     const isTermIncludedInRecipe = (recipe, term) => {
-      return (
-        isTermIncludedInString(recipe.name, term) ||
-        isTermIncludedInString(recipe.description, term) ||
-        isTermIncludedInString(recipe.appliance, term) ||
+      if (isTermIncludedInString(recipe.name, term)) {
+        return true
+      }
+      if (isTermIncludedInString(recipe.description, term)) {
+        return true
+      }
+      if (isTermIncludedInString(recipe.appliance, term)) {
+        return true
+      }
+      if (
         recipe.ingredients.some((ingredient) =>
           isTermIncludedInString(ingredient.ingredient, term)
-        ) ||
+        )
+      ) {
+        return true
+      }
+      if (
         recipe.ustensils.some((utensil) =>
           isTermIncludedInString(utensil, term)
         )
-      )
+      ) {
+        return true
+      }
+      return false
     }
 
-    return searchTerms.every((term) => isTermIncludedInRecipe(recipe, term))
+    for (let term of searchTerms) {
+      if (!isTermIncludedInRecipe(recipe, term)) {
+        return false
+      }
+    }
+    return true
   }
 
   /**
